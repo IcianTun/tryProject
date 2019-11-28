@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 vertical = transform.forward;
         Vector3 horizontal = transform.right;
 
-        Vector3 movement = (vertical * v + horizontal * h) * movementSpeed * Time.deltaTime;
+        Vector3 movement = (vertical * v + horizontal * h).normalized * movementSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
         ////playerRigidbody.AddForce(movement - playerRigidbody.velocity, ForceMode.VelocityChange);
     }

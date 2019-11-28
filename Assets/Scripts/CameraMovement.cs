@@ -19,8 +19,10 @@ public class CameraMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(player.rotation.eulerAngles.y - transform.rotation.eulerAngles.y);
         Vector3 targetCamPos = player.position + positionOffset;
-        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
-        transform.rotation = Quaternion.Lerp(transform.rotation, player.rotation, smoothing * Time.deltaTime);
+        //transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, player.rotation, smoothing * Time.deltaTime);
+        transform.RotateAround(player.position, Vector3.up, player.rotation.eulerAngles.y - transform.rotation.eulerAngles.y);
     }
 }
