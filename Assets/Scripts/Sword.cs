@@ -10,13 +10,7 @@ public class Sword : MonoBehaviour {
 	void Start () {
         animator = GetComponent<Animator>();
 	}
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            PerformAttack();
-        }
-    }
+
     public void PerformAttack()
     {
         animator.SetTrigger("SwingSword");

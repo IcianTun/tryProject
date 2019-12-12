@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
         playerPrevPos = player.transform.position;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         ////Debug.Log(player.rotation.eulerAngles.y - transform.rotation.eulerAngles.y);
         ////Vector3 targetCamPos = player.position + positionOffset;

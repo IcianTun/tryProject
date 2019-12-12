@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageOnHit : MonoBehaviour {
 
     public int damage;
+    public bool isRemovedAfterHit;
 
     void Start()
     {
@@ -13,8 +14,9 @@ public class DamageOnHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.tag == "Boss")
-        other.gameObject.GetComponent<PlayerHealth>().takeDamage(damage);
+        if (other.tag == "Boss") {
+            other.gameObject.GetComponent<BossHealth>().takeDamage(damage);
+        }
     }
 
 }
