@@ -51,6 +51,6 @@ public class AoeAttack : MonoBehaviour {
         {
             Debug.Log("Miss");
         }
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

@@ -6,6 +6,7 @@ public class DamageOnHit : MonoBehaviour {
 
     public int damage;
     public bool isRemovedAfterHit;
+    public bool isPlayer;
 
     void Start()
     {
@@ -14,9 +15,30 @@ public class DamageOnHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        // Player Attacks
         if (other.tag == "Boss") {
             other.gameObject.GetComponent<BossHealth>().takeDamage(damage);
+            if (isRemovedAfterHit)
+            {
+                Destroy(gameObject);
+            }
         }
+        else if (other.tag == "Boundary" && isRemovedAfterHit)
+        {
+            Debug.Log("eiei");
+            Destroy(gameObject);
+        }
+
+        // Enemy Attacks
+        if (!isPlayer && other.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerHealth>().takeDamage(damage);
+            if (isRemovedAfterHit)
+            {
+                Destroy(gameObject);
+            }
+        }
+
     }
 
 }

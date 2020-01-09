@@ -5,6 +5,8 @@ using UnityEngine;
 public class AutoMoveForward : MonoBehaviour {
 
     public float delayActiveMovement = 0.0f;
+    public float moveSpeed;
+
     private bool isWait = false;
     private float myTime = 0.0f;
 
@@ -17,7 +19,7 @@ public class AutoMoveForward : MonoBehaviour {
 	void Update () {
 		if(myTime > delayActiveMovement)
         {
-            //moveforward()
+            GetComponent<Rigidbody>().velocity = transform.forward * moveSpeed;
         } else
         {
             myTime += Time.deltaTime;

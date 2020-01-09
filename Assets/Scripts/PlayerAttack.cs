@@ -43,11 +43,12 @@ public class PlayerAttack : MonoBehaviour {
             cooldownImage.fillAmount = 0;
             playerMovement.enabled = false;
         }
-        if (Input.GetButton("Fire2") && myTime > nextFire)
+        else if (Input.GetButton("Fire2") && myTime > nextFire)
         {
             nextFire = myTime + attackDelay;
             Debug.Log("FIRE RANGE");
-            //Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation);
+            Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation);
             nextFire = nextFire - myTime;
             myTime = 0.0f;
             attacking = true;

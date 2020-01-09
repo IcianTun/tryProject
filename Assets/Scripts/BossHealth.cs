@@ -9,11 +9,13 @@ public class BossHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Image healthbar;
+    public Text hpText;
 
     // Use this for initialization
     void Start()
     {
         currentHealth = maxHealth;
+        hpText.text = currentHealth + "/" + maxHealth;
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class BossHealth : MonoBehaviour
     public void takeDamage(int damagePoint)
     {
         currentHealth -= damagePoint;
+        hpText.text = currentHealth + "/" + maxHealth;
         healthbar.fillAmount = (float) currentHealth / maxHealth;
     }
 }
