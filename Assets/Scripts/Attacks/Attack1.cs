@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IAttack {
-    void Perform();
+public class Attack1 : Attack
+{
+
+    Attack1()
+    {
+
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack1 : MonoBehaviour, IAttack {
+public class SubAttack1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,9 +13,4 @@ public class Attack1 : MonoBehaviour, IAttack {
 	void Update () {
 		
 	}
-    
-    public void Perform ()
-    {
-        Debug.Log("hello from attack1");
-    }
 }
