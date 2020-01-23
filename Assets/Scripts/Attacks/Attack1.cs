@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Attack1 : Attack
 {
+    
 
     Attack1()
     {
-
+        
     }
 }

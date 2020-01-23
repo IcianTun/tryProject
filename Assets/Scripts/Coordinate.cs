@@ -18,16 +18,20 @@ public class Coordinate : MonoBehaviour {
             _instance = this;
         }
     }
-    public Transform north;
+    public Transform Center;
+    public Transform North;
+    public Transform East;
+    public Transform South;
+    public Transform West;
+
+    public Transform NorthWest;
+    public Transform NorthEast;
+    public Transform SouthEast;
+    public Transform SouthWest;
+
+
+
+
+
 
 }
-
-//using UnityEngine;
-
-//public class Coordinate : Singleton<Coordinate> {
-
-//    public string myGlobalVar = "whatever";
-//    public Vector3 north = new Vector3(0,0.51f,8);
-
-//}
-

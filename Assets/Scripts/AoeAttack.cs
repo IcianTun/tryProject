@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class AoeAttack : MonoBehaviour {
 
-    bool isHit;
-    float delay = 3;
-    int damagePoint = 10;
+    public float delay = 3;
+    public int damagePoint = 10;
 
-    GameObject player;
+    public GameObject player;
     PlayerHealth playerHealth;
+
+    private bool isHit;
 
     // Use this for initialization
     void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
         playerHealth = player.GetComponent<PlayerHealth>();
         StartCoroutine(DealDamageDelayed());
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnTriggerEnter(Collider other)
     {
