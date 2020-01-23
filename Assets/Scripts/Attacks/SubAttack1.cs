@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class SubAttack1 : MonoBehaviour,ISubAttack {
 
-    public GameObject AoEObject;
+    public GameObject AoeObject;
 
     public void Perform ()
     {
-        Debug.Log("Hello from subattack1");
-        Instantiate(AoEObject, Coordinate.Instance.North.position, Coordinate.Instance.North.rotation);
-        Instantiate(AoEObject, Coordinate.Instance.East.position, Coordinate.Instance.East.rotation);
-        Instantiate(AoEObject, Coordinate.Instance.South.position, Coordinate.Instance.South.rotation);
-        Instantiate(AoEObject, Coordinate.Instance.West.position, Coordinate.Instance.West.rotation);
+        Instantiate(AoeObject, Coordinate.Instance.North.position, Coordinate.Instance.North.rotation);
+        Instantiate(AoeObject, Coordinate.Instance.East.position, Coordinate.Instance.East.rotation);
+        Instantiate(AoeObject, Coordinate.Instance.South.position, Coordinate.Instance.South.rotation);
+        Instantiate(AoeObject, Coordinate.Instance.West.position, Coordinate.Instance.West.rotation);
     }
 }

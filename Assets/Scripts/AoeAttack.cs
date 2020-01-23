@@ -24,7 +24,7 @@ public class AoeAttack : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-            Debug.Log("Enter");
+            //Debug.Log("Enter");
             isHit = true;
         }
     }
@@ -33,7 +33,7 @@ public class AoeAttack : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            Debug.Log("Exit");
+            //Debug.Log("Exit");
             isHit = false;
         }
     }

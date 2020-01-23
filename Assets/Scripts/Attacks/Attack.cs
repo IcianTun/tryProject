@@ -14,18 +14,12 @@ public class Attack : MonoBehaviour {
         {
             subAttacks.Add((ISubAttack) subAttackObject.GetComponent<MonoBehaviour>());
         }
-        StartCoroutine(PerformAttack());
+        //StartCoroutine(PerformAttack());
     }
-
-    //public void Update()
-    //{
-    //    Debug.Log("asdf");
-    //    Perform();
-    //}
+    
 
     public IEnumerator PerformAttack()
     {
-        Debug.Log("tst1234");
         foreach (ISubAttack subattack in subAttacks)
         {
             subattack.Perform();

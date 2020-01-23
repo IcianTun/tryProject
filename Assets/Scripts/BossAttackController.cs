@@ -25,7 +25,8 @@ public class BossAttackController : MonoBehaviour {
         // This work
         //attackList[0] = (Attack) gameObject.AddComponent(System.Type.GetType("Attack1"));
 
-        //InvokeRepeating("PerformAttack", delay, attackRate);
+        InvokeRepeating("PerformAttack", delay, attackRate);
+
     }
 
 
@@ -34,8 +35,11 @@ public class BossAttackController : MonoBehaviour {
         // get random attack from IAttack[] array and perform it
         // 
         //attackList[0].Perform();
+        Debug.Log("Controller Perform attack");
         int a = Random.Range(0, attackList.Count);
         Debug.Log(a);
         Attack attack = attackList[a];
+        StartCoroutine(attack.PerformAttack());
+        
 	}
 }
