@@ -22,8 +22,9 @@ public class Attack : MonoBehaviour {
     {
         foreach (ISubAttack subattack in subAttacks)
         {
+            Debug.Log("Delay of subattack1: " + subattack.GetDelay());
             subattack.Perform();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(subattack.GetDelay() + 0.5f);
         }
     }
 

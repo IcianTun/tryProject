@@ -51,4 +51,8 @@ public class AoeAttack : MonoBehaviour {
         }
         Destroy(gameObject);
     }
+    public void setDelay(float delay)
+    {
+        this.delay = delay;
+    }
 }

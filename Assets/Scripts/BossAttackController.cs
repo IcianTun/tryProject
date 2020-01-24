@@ -31,12 +31,10 @@ public class BossAttackController : MonoBehaviour {
 
 
     void PerformAttack () {
-        // TODO 
+
         // get random attack from IAttack[] array and perform it
-        // 
-        //attackList[0].Perform();
-        Debug.Log("Controller Perform attack");
         int a = Random.Range(0, attackList.Count);
+        Debug.Log("Controller Perform attack");
         Debug.Log(a);
         Attack attack = attackList[a];
         StartCoroutine(attack.PerformAttack());
