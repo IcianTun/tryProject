@@ -1,4 +1,4 @@
 ﻿interface ISubAttack {
 	void Perform();
-    float GetDelay();
+    float GetExecuteTime();
 }

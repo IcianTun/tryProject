@@ -7,24 +7,27 @@ public class Attack : MonoBehaviour {
     public GameObject[] PresettedSubAttack;
     List<ISubAttack> subAttacks;
 
+    public float executeTime = 0.0f;
+
     private void Start()
     {
         subAttacks = new List<ISubAttack>();
         foreach(GameObject subAttackObject in PresettedSubAttack)
         {
-            subAttacks.Add((ISubAttack) subAttackObject.GetComponent<MonoBehaviour>());
+            ISubAttack subAttackScript = (ISubAttack)subAttackObject.GetComponent<MonoBehaviour>();
+            subAttacks.Add(subAttackScript);
+            executeTime += subAttackScript.GetExecuteTime();
         }
-        //StartCoroutine(PerformAttack());
     }
     
 
-    public IEnumerator PerformAttack()
+    public IEnumerator PerformSubAttacks()
     {
         foreach (ISubAttack subattack in subAttacks)
         {
-            Debug.Log("Delay of subattack1: " + subattack.GetDelay());
+            Debug.Log("ExecuteTime of subattack: " + subattack.GetExecuteTime());
             subattack.Perform();
-            yield return new WaitForSeconds(subattack.GetDelay() + 0.5f);
+            yield return new WaitForSeconds(subattack.GetExecuteTime() + 1.5f);
         }
     }
 

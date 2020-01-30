@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class BossHealth : MonoBehaviour
 {
 
-    public int maxHealth = 100;
-    public int currentHealth;
+    private int maxHealth = 1000;
+    private int currentHealth;
     public Image healthbar;
     public Text hpText;
 

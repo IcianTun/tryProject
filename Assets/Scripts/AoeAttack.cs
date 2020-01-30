@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class AoeAttack : MonoBehaviour {
 
-    public float delay = 3;
+    public float delay;
     public int damagePoint = 10;
 
-    public GameObject player;
+
+    public GameObject AoeTimer;
     PlayerHealth playerHealth;
 
     private bool isHit;
 
+    private float myTime = 0.0f;
+
     // Use this for initialization
     void Start () {
-        if (player == null) {
-            player = GameObject.FindGameObjectWithTag("Player");
-        }
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = player.GetComponent<PlayerHealth>();
         StartCoroutine(DealDamageDelayed());
+    }
+    void Update()
+    {
+        myTime = myTime + Time.deltaTime;
+        AoeTimer.transform.localScale = new Vector3(myTime/delay,1,myTime/delay);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
-            //Debug.Log("Enter");
             isHit = true;
         }
     }
@@ -33,7 +38,6 @@ public class AoeAttack : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            //Debug.Log("Exit");
             isHit = false;
         }
     }
