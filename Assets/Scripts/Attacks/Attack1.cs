@@ -6,8 +6,13 @@ public class Attack1 : Attack
 {
     
 
-    Attack1()
+    public Attack1()
     {
         
+    }
+
+    override public void Hello()
+    {
+        Debug.Log("Hellow from Attack 1 Child");       
     }
 }

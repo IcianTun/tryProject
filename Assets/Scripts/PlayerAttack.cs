@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour {
     void Update ()
     {
         myTime = myTime + Time.deltaTime;
-        if (Input.GetButton("Fire1") && myTime > nextFire)
+        if ((Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.L)) && myTime > nextFire)
         {
             nextFire = myTime + attackDelay;
             swordScript.PerformAttack();
@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour {
             cooldownImage.fillAmount = 0;
             playerMovement.enabled = false;
         }
-        else if (Input.GetButton("Fire2") && myTime > nextFire)
+        else if ((Input.GetButton("Fire2") || Input.GetKeyDown(KeyCode.Semicolon)) && myTime > nextFire)
         {
             nextFire = myTime + attackDelay;
             Debug.Log("FIRE RANGE");

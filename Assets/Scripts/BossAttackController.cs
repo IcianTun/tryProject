@@ -6,8 +6,11 @@ public class BossAttackController : MonoBehaviour {
 
     public GameObject[] PresettedAttacks;
     List<Attack> attackList;
+    List<Attack> attackList2;
 
-    public float delay = 5.0f;
+    public string[] strings;
+
+    public float delayStart = 5.0f;
 
     private float myTime = 0.0f;
     private float waitDelayForNextAttack;
@@ -16,21 +19,30 @@ public class BossAttackController : MonoBehaviour {
     void Start () {
 
         attackList = new List<Attack>();
+        attackList2 = new List<Attack>();
         foreach (GameObject AttackObject in PresettedAttacks)
         {
             attackList.Add((Attack) AttackObject.GetComponent<MonoBehaviour>());
         }
-        waitDelayForNextAttack = delay;
+        waitDelayForNextAttack = delayStart;
         // This work
         //attack1 = gameObject.AddComponent<Attack1>();
 
         // This work
         //attackList[0] = (Attack) gameObject.AddComponent(System.Type.GetType("Attack1"));
 
+        // This equals new Attack1(); ???????????
+        // ThisWork2
+        attackList2.Add((Attack) System.Activator.CreateInstance(System.Type.GetType("Attack1")));
     }
 
     private void Update()
     {
+        //ThisWork2 
+        attackList2[0].Hello();
+
+
+
         myTime = myTime + Time.deltaTime;
         if (myTime > waitDelayForNextAttack)
         {

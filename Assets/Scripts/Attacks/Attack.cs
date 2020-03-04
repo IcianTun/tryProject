@@ -9,6 +9,12 @@ public class Attack : MonoBehaviour {
 
     public float executeTime = 0.0f;
 
+    public Attack()
+    {
+
+    }
+
+
     private void Start()
     {
         subAttacks = new List<ISubAttack>();
@@ -31,4 +37,9 @@ public class Attack : MonoBehaviour {
         }
     }
 
+    
+    virtual public void Hello()
+    {
+        Debug.Log("hello from base Attack");
+    }
 }

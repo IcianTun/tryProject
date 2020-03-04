@@ -25,7 +25,6 @@ public class DamageOnHit : MonoBehaviour {
         }
         else if (other.tag == "Boundary" && isRemovedAfterHit)
         {
-            Debug.Log("eiei");
             Destroy(gameObject);
         }
 
