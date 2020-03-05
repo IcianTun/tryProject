@@ -46,12 +46,10 @@ public class AoeAttack : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         if (isHit)
         {
-            Debug.Log("Hit");
             playerHealth.takeDamage(damagePoint);
         }
         else
         {
-            Debug.Log("Miss");
         }
         Destroy(gameObject);
     }

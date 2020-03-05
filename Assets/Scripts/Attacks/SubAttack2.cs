@@ -5,25 +5,27 @@ using UnityEngine;
 public class SubAttack2 : MonoBehaviour,ISubAttack {
 
     // section attack , north east south west
-
+    [Header("Section Attack North")]
     public GameObject AoeObject;
-    private float executeTime;
-    private GameObject bossObject;
-    private void Start()
-    {
-        bossObject = GameObject.FindGameObjectWithTag("Boss");
-        executeTime = 8.0f;
-    }
+    public float executeTime;
 
     public void Perform ()
     {
-        StartCoroutine(SpawnAoe());
-
+        //StartCoroutine(SpawnAoe());
+        GameObject NorthAoe = Instantiate(AoeObject, Coordinate.Instance.North.position, Coordinate.Instance.North.rotation);
+        NorthAoe.GetComponent<AoeAttack>().setDelay(executeTime);
+        NorthAoe.transform.localScale = new Vector3(3.0f, 1.0f, 1.5f);
     }
     public float GetExecuteTime()
     {
         return executeTime;
     }
+
+    public void myAwake()
+    {
+    }
+
+
     private IEnumerator SpawnAoe()
     {
         float intervalDelay = 1.0f;

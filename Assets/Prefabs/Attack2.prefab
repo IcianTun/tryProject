@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
+  executeTime: 3
 --- !u!114 &114219130479670090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,7 +127,7 @@ MonoBehaviour:
   PresettedSubAttack:
   - {fileID: 1735086592908968}
   - {fileID: 1552771004901622}
-  executeTime: 0
+  executeTime: 3
 --- !u!114 &114256059521920850
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,4 +139,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a833cf5c641904796162780c0a0af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AoeObject: {fileID: 0}
+  AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
+  executeTime: 4

@@ -14,6 +14,14 @@ public class BossHealth : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (healthbar == null)
+        {
+            healthbar = GameObject.Find("BossGreen").GetComponent<Image>();
+        }
+        if (hpText == null)
+        {
+            hpText = GameObject.Find("BossHpText").GetComponent<Text>();
+        }
         currentHealth = maxHealth;
         hpText.text = currentHealth + "/" + maxHealth;
     }

@@ -7,29 +7,22 @@ public class SubAttack3 : MonoBehaviour,ISubAttack {
     // Spawn +,  interval
 
     public GameObject AoeObject;
-    private float executeTime;
-
-    private void Start()
-    {
-        executeTime = 3.0f;
-    }
+    public float executeTime;
+    
     public void Perform ()
     {
-        StartCoroutine(SpawnAoe());
+        //StartCoroutine(SpawnAoe());
+        Instantiate(AoeObject, Coordinate.Instance.North.position, Coordinate.Instance.North.rotation).GetComponent<AoeAttack>().setDelay(executeTime);
 
     }
     public float GetExecuteTime()
     {
         return executeTime;
     }
-    private IEnumerator SpawnAoe()
+
+    public void myAwake()
     {
-        float intervalDelay = 0.5f;
-        float aoeDelay = 3.0f;
-        Instantiate(AoeObject, Coordinate.Instance.North.position, Coordinate.Instance.North.rotation).GetComponent<AoeAttack>().setDelay(aoeDelay);
-        yield return new WaitForSeconds(intervalDelay);
-        //Instantiate(AoeObject, Coordinate.Instance.East.position, Coordinate.Instance.East.rotation).GetComponent<AoeAttack>().setDelay(delay);
-        //Instantiate(AoeObject, Coordinate.Instance.South.position, Coordinate.Instance.South.rotation).GetComponent<AoeAttack>().setDelay(delay);
-        //Instantiate(AoeObject, Coordinate.Instance.West.position, Coordinate.Instance.West.rotation).GetComponent<AoeAttack>().setDelay(delay);
+
     }
+
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SubAttack5 : MonoBehaviour,ISubAttack {
 
     public GameObject AoeObject;
-    private float executeTime;
+    public float executeTime;
 
     private void Start()
     {
@@ -23,4 +23,10 @@ public class SubAttack5 : MonoBehaviour,ISubAttack {
     {
         return executeTime;
     }
+
+    public void myAwake()
+    {
+
+    }
+
 }

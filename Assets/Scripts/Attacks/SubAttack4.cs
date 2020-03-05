@@ -7,23 +7,26 @@ public class SubAttack4 : MonoBehaviour,ISubAttack {
     // Line to Player
 
     public GameObject AoeObject;
-    private float executeTime;
+    public float executeTime;
 
-    private void Start()
-    {
-
-        executeTime = 1.5f;
-    }
     public void Perform ()
     {
-        float aoeDelay = 1.0f;
+        Debug.Log(4);
         Vector3 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         Vector3 bossPosition = GameObject.FindGameObjectWithTag("Boss").transform.position;
         Vector3 positionBetween = (bossPosition + playerPosition) / 2;
-        Instantiate(AoeObject, positionBetween , Coordinate.Instance.North.rotation).GetComponent<AoeAttack>().setDelay(aoeDelay);
+        GameObject newAoeObject = Instantiate(AoeObject, positionBetween, Coordinate.Instance.North.rotation);
+        newAoeObject.GetComponent<AoeAttack>().setDelay(executeTime);
+        newAoeObject.transform.LookAt(playerPosition);
     }
     public float GetExecuteTime()
     {
         return executeTime;
     }
+
+    public void myAwake()
+    {
+
+    }
+
 }

@@ -58,7 +58,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4272528211403714
 Transform:
   m_ObjectHideFlags: 1
@@ -114,7 +114,7 @@ MonoBehaviour:
   PresettedSubAttack:
   - {fileID: 1307230285479000}
   - {fileID: 1300894836283376}
-  executeTime: 0
+  executeTime: 11
 --- !u!114 &114737565893305488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
+  executeTime: 4
 --- !u!114 &114799354879668760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,3 +140,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
+  executeTime: 3

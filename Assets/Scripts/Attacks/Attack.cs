@@ -8,15 +8,11 @@ public class Attack : MonoBehaviour {
     List<ISubAttack> subAttacks;
 
     public float executeTime = 0.0f;
-
-    public Attack()
+ 
+    /*
+    private void Awake()
     {
-
-    }
-
-
-    private void Start()
-    {
+        Debug.Log("Awake");
         subAttacks = new List<ISubAttack>();
         foreach(GameObject subAttackObject in PresettedSubAttack)
         {
@@ -25,13 +21,25 @@ public class Attack : MonoBehaviour {
             executeTime += subAttackScript.GetExecuteTime();
         }
     }
+    */
     
+    public void myAwake()
+    {
+        executeTime = 0;
+        Debug.Log("MyAwakeKub");
+        subAttacks = new List<ISubAttack>();
+        foreach (GameObject subAttackObject in PresettedSubAttack)
+        {
+            ISubAttack subAttackScript = (ISubAttack)subAttackObject.GetComponent<MonoBehaviour>();
+            subAttacks.Add(subAttackScript);
+            executeTime += subAttackScript.GetExecuteTime();
+        }
+    }
 
     public IEnumerator PerformSubAttacks()
     {
         foreach (ISubAttack subattack in subAttacks)
         {
-            Debug.Log("ExecuteTime of subattack: " + subattack.GetExecuteTime());
             subattack.Perform();
             yield return new WaitForSeconds(subattack.GetExecuteTime() + 1.5f);
         }
