@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Coordinate : MonoBehaviour {
@@ -6,9 +7,11 @@ public class Coordinate : MonoBehaviour {
 
     public static Coordinate Instance { get { return _instance; } }
 
+    Dictionary<string,Transform> dict;
 
     private void Awake()
     {
+        dict = new Dictionary<string, Transform>();
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -17,6 +20,15 @@ public class Coordinate : MonoBehaviour {
         {
             _instance = this;
         }
+        dict.Add("Center", Center);
+        dict.Add("North", North);
+        dict.Add("East", East);
+        dict.Add("South", South);
+        dict.Add("West", West);
+        dict.Add("NorthWest", NorthWest);
+        dict.Add("NorthEast", NorthEast);
+        dict.Add("SouthEast", SouthEast);
+        dict.Add("SouthWest", SouthWest);
     }
     public Transform Center;
     public Transform North;
@@ -31,7 +43,10 @@ public class Coordinate : MonoBehaviour {
 
 
 
-
+    public Transform getCoordinate(string coordinateName)
+    {
+        return dict[coordinateName];
+    }
 
 
 }

@@ -31,6 +31,7 @@ public class PlayerAttack : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
+        Debug.Log(myTime);
         myTime = myTime + Time.deltaTime;
         if ((Input.GetButton("Fire1") || Input.GetKeyDown(KeyCode.L)) && myTime > nextFire)
         {

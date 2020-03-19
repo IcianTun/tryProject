@@ -17,8 +17,8 @@ public class AoeAttack : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerHealth = player.GetComponent<PlayerHealth>();
+        //GameObject player = GameObject.FindGameObjectWithTag("Player");
+        //playerHealth = player.GetComponent<PlayerHealth>();
         StartCoroutine(DealDamageDelayed());
     }
     void Update()
@@ -30,6 +30,7 @@ public class AoeAttack : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") {
+            playerHealth = other.GetComponent<PlayerHealth>();
             isHit = true;
         }
     }

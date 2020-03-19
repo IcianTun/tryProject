@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class tstCone : MonoBehaviour {
 
+    public float angle;
+    public float minDist;
+    public float maxDist;
+
+    private void Update()
+    {
+        MeshFilter meshFilter = GetComponent<MeshFilter>();
+        meshFilter.mesh = GenerateConeMesh(gameObject, angle, minDist, maxDist);
+        GetComponent<MeshCollider>().sharedMesh = meshFilter.mesh;
+    }
+
     public static Mesh GenerateConeMesh(GameObject gameObj, float angle_fov, float dist_min, float dist_max)
     {
         int quality = 30;
@@ -25,7 +36,7 @@ public class tstCone : MonoBehaviour {
         mesh.normals = normals;
 
         //------------- PART 2----------------//
-        float angle_lookat = GetLookAtAngle(null);
+        float angle_lookat = GetLookAtAngle(gameObj);
         float angle_start = angle_lookat - angle_fov;
         float angle_end = angle_lookat + angle_fov;
         float angle_delta = (angle_end - angle_start) / quality;

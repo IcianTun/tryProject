@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class BossAttackController : MonoBehaviour {
 
+    public string myString;
     public GameObject[] PresettedAttacks;
     List<Attack> attackList;
     ////List<Attack> attackList2;
 
-    public string[] strings;
-
+    public GameInstanceManager gameInstanceManager;
     public float delayStart = 5.0f;
+    public float delayBetweenAttack = 3.0f;
 
     private float myTime = 0.0f;
     private float waitDelayForNextAttack;
 
     // Use this for initialization
     void Start () {
+        //player = gameInstance.transform.Find("Player").gameObject;
         if (attackList == null)
         {
             attackList = new List<Attack>();
-            ////attackList2 = new List<Attack>();
             foreach (GameObject AttackObject in PresettedAttacks)
             {
                 Attack anAttack = (Attack)AttackObject.GetComponent<MonoBehaviour>();
@@ -46,10 +47,9 @@ public class BossAttackController : MonoBehaviour {
     public void myAwake()
     {
         attackList = new List<Attack>();
-        ////attackList2 = new List<Attack>();
         foreach (GameObject AttackObject in PresettedAttacks)
         {
-            Attack anAttack = (Attack)AttackObject.GetComponent<MonoBehaviour>();
+            Attack anAttack = (Attack) AttackObject.GetComponent<MonoBehaviour>();
             anAttack.myAwake();
             attackList.Add(anAttack);
         }
@@ -82,8 +82,8 @@ public class BossAttackController : MonoBehaviour {
         Debug.Log(attackList.Count);
         Debug.Log("Perform Attack > "+a);
         Attack attack = attackList[a];
-        StartCoroutine(attack.PerformSubAttacks());
-        waitDelayForNextAttack = attack.executeTime + 3.0f;
+        StartCoroutine(attack.PerformSubAttacks(gameInstanceManager));
+        waitDelayForNextAttack = attack.executeTime + delayBetweenAttack;
 
     }
 
@@ -97,4 +97,8 @@ public class BossAttackController : MonoBehaviour {
         return attackList;
     }
 
+    public void setGameInstanceManager(GameInstanceManager gameInstanceManager)
+    {
+        this.gameInstanceManager = gameInstanceManager;
+    }
 }

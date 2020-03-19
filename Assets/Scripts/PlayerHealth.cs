@@ -10,9 +10,11 @@ public class PlayerHealth : MonoBehaviour {
 
     public int maxHealth = 100;
     public int currentHealth;
+    public PlayerAgent agent;
 
     // Use this for initialization
     void Start () {
+        agent = GetComponent<PlayerAgent>();
         currentHealth = maxHealth;
         hpText.text = currentHealth + "/" + maxHealth;
     }
@@ -27,5 +29,8 @@ public class PlayerHealth : MonoBehaviour {
         currentHealth -= damagePoint;
         hpText.text = currentHealth + "/" + maxHealth;
         healthbar.fillAmount = (float)currentHealth / maxHealth;
+        if (agent)
+            agent.AddReward(-damagePoint / 100f);
     }
+    
 }

@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4881583788329942}
-  - component: {fileID: 114256059521920850}
   m_Layer: 0
-  m_Name: SubAttack4
+  m_Name: SubAttack22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,9 +50,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4388380177673140}
-  - component: {fileID: 114178027536121516}
+  - component: {fileID: 114719096052191144}
   m_Layer: 0
-  m_Name: SubAttack3
+  m_Name: SubAttack21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,19 +99,6 @@ Transform:
   m_Father: {fileID: 4584055799969992}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114178027536121516
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1735086592908968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bcd530ac3a2afd4ab4e58d94da74c2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
-  executeTime: 3
 --- !u!114 &114219130479670090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,17 +113,18 @@ MonoBehaviour:
   PresettedSubAttack:
   - {fileID: 1735086592908968}
   - {fileID: 1552771004901622}
+  myString: 
   executeTime: 3
---- !u!114 &114256059521920850
+--- !u!114 &114719096052191144
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552771004901622}
+  m_GameObject: {fileID: 1735086592908968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3a833cf5c641904796162780c0a0af7, type: 3}
+  m_Script: {fileID: 11500000, guid: fa93a10694d7ad044bbf515658365aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AoeObject: {fileID: 1486935435311086, guid: b627a7ef6479e6446af386a949c2e2ce, type: 2}
-  executeTime: 4
+  AoeObject: {fileID: 0}
+  executeTime: 0

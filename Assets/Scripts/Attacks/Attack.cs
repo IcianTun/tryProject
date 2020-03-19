@@ -5,10 +5,12 @@ using UnityEngine;
 public class Attack : MonoBehaviour {
 
     public GameObject[] PresettedSubAttack;
-    List<ISubAttack> subAttacks;
+    List<SubAttack> subAttacks;
 
+    public string myString;
+//    [System.NonSerialized]
     public float executeTime = 0.0f;
- 
+    public float delayAfterAnSubAttack = 1.5f;
     /*
     private void Awake()
     {
@@ -26,26 +28,33 @@ public class Attack : MonoBehaviour {
     public void myAwake()
     {
         executeTime = 0;
-        Debug.Log("MyAwakeKub");
-        subAttacks = new List<ISubAttack>();
+        subAttacks = new List<SubAttack>();
         foreach (GameObject subAttackObject in PresettedSubAttack)
         {
-            ISubAttack subAttackScript = (ISubAttack)subAttackObject.GetComponent<MonoBehaviour>();
+            SubAttack subAttackScript = (SubAttack) subAttackObject.GetComponent<MonoBehaviour>();
             subAttacks.Add(subAttackScript);
             executeTime += subAttackScript.GetExecuteTime();
         }
     }
 
-    public IEnumerator PerformSubAttacks()
+    public IEnumerator PerformSubAttacks(GameInstanceManager gameInstanceManager)
     {
-        foreach (ISubAttack subattack in subAttacks)
+        foreach (SubAttack subattack in subAttacks)
         {
-            subattack.Perform();
-            yield return new WaitForSeconds(subattack.GetExecuteTime() + 1.5f);
+            subattack.Perform(gameInstanceManager);
+            yield return new WaitForSeconds(subattack.GetExecuteTime() + delayAfterAnSubAttack);
         }
     }
 
-    
+    public List<SubAttack> GetSubAttacks()
+    {
+        return subAttacks;
+    }
+
+    public void SetAttackList(List<SubAttack> newSubAttack)
+    {
+        subAttacks = newSubAttack;
+    }
     virtual public void Hello()
     {
         Debug.Log("hello from base Attack");

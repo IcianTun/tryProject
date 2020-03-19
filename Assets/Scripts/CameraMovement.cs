@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
     public Transform player;
     public float smoothing = 5f;
 
-    private Vector3 positionOffset;
+    public Vector3 positionOffset;
     float distance;
     Vector3 playerPrevPos, playerMoveDir;
 
