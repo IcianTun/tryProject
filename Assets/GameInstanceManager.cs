@@ -25,9 +25,9 @@ public class GameInstanceManager : MonoBehaviour {
     void tryMixBoss() {
         GameObject bossObject = Instantiate(bossPrefab1,new Vector3(transform.position.x, 2, transform.position.z),transform.rotation);
         BossAttackController bossScript1 = bossObject.GetComponent<BossAttackController>();
-        bossScript1.myAwake();
+        bossScript1.MyAwake();
         BossAttackController bossScript2 = bossPrefab2.GetComponent<BossAttackController>();
-        bossScript2.myAwake();
+        bossScript2.MyAwake();
         Attack attack2 = bossScript2.getAttackList()[0];
         List<Attack> attackList = bossScript1.getAttackList();
         attackList.Add(attack2);
@@ -42,5 +42,14 @@ public class GameInstanceManager : MonoBehaviour {
         newBoss.transform.parent = gameObject.transform;
         newBoss.GetComponent<BossAttackController>().setGameInstanceManager(this);
         return newBoss;
+    }
+
+    public void DestroyAllAoe()
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "Aoe" || child.tag == "PlayerShot")
+            Destroy(child.gameObject);
+        }
     }
 }

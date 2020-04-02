@@ -7,12 +7,9 @@ public class BossAttackController : MonoBehaviour {
     public string myString;
     public GameObject[] PresettedAttacks;
     List<Attack> attackList;
-    ////List<Attack> attackList2;
 
     public GameInstanceManager gameInstanceManager;
     public float delayStart = 5.0f;
-    public float delayBetweenAttack = 3.0f;
-
     private float myTime = 0.0f;
     private float waitDelayForNextAttack;
 
@@ -24,8 +21,8 @@ public class BossAttackController : MonoBehaviour {
             attackList = new List<Attack>();
             foreach (GameObject AttackObject in PresettedAttacks)
             {
-                Attack anAttack = (Attack)AttackObject.GetComponent<MonoBehaviour>();
-                anAttack.myAwake();
+                Attack anAttack = (Attack) AttackObject.GetComponent<MonoBehaviour>();
+                anAttack.MyAwake();
                 attackList.Add(anAttack);
             }
             waitDelayForNextAttack = delayStart;
@@ -44,19 +41,16 @@ public class BossAttackController : MonoBehaviour {
         ////attackList2.Add((Attack) System.Activator.CreateInstance(System.Type.GetType("Attack1")));
     }
 
-    public void myAwake()
+    public void MyAwake()
     {
         attackList = new List<Attack>();
         foreach (GameObject AttackObject in PresettedAttacks)
         {
             Attack anAttack = (Attack) AttackObject.GetComponent<MonoBehaviour>();
-            anAttack.myAwake();
+            anAttack.MyAwake();
             attackList.Add(anAttack);
         }
         waitDelayForNextAttack = delayStart;
-
-        Debug.Log(PresettedAttacks.Length);
-
 
     }
 
@@ -64,9 +58,6 @@ public class BossAttackController : MonoBehaviour {
     {
         ////ThisWork2 
         ////attackList2[0].Hello();
-
-
-
         myTime = myTime + Time.deltaTime;
         if (myTime > waitDelayForNextAttack)
         {
@@ -79,11 +70,9 @@ public class BossAttackController : MonoBehaviour {
 
         // get random attack from IAttack[] array and perform it
         int a = Random.Range(0, attackList.Count);
-        Debug.Log(attackList.Count);
-        Debug.Log("Perform Attack > "+a);
         Attack attack = attackList[a];
         StartCoroutine(attack.PerformSubAttacks(gameInstanceManager));
-        waitDelayForNextAttack = attack.executeTime + delayBetweenAttack;
+        waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
 
     }
 
@@ -100,5 +89,12 @@ public class BossAttackController : MonoBehaviour {
     public void setGameInstanceManager(GameInstanceManager gameInstanceManager)
     {
         this.gameInstanceManager = gameInstanceManager;
+    }
+
+    public void MyReset()
+    {
+         delayStart = 5.0f;
+         myTime = 0.0f;
+         waitDelayForNextAttack = delayStart;
     }
 }

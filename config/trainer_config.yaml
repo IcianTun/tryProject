@@ -22,7 +22,12 @@ default:
         extrinsic:
             strength: 1.0
             gamma: 0.99
-
+            
+PlayerAgent:
+    hidden_units: 256
+    num_layers: 3
+    max_steps: 1.0e6
+    
 FoodCollector:
     normalize: false
     beta: 5.0e-3

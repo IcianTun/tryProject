@@ -34,6 +34,8 @@ public class PlayerAgent : Agent {
     float nextFire;
     bool attacking;
 
+    public float angle;
+    public float dot;
     public override void InitializeAgent()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -43,7 +45,7 @@ public class PlayerAgent : Agent {
 
         //boss = gameInstance.transform.Find("Boss").gameObject;
         gameInstanceManager = gameInstance.GetComponent<GameInstanceManager>();
-        boss = gameInstanceManager.GenerateBoss();
+        boss = gameInstanceManager.boss;
         bossHealth = boss.GetComponent<BossHealth>();
         lastBossHealth = bossHealth.getCurrentHealth();
 
@@ -61,6 +63,7 @@ public class PlayerAgent : Agent {
         // vector to boss
         AddVectorObs(boss.transform.position - gameObject.transform.position);       // Later: Changing boss object affect this
         AddVectorObs(aoeTouchingCount/10.0f);
+        AddVectorObs(angle/180f);
     }
 
 
@@ -107,12 +110,13 @@ public class PlayerAgent : Agent {
             else if (attackAction == 2)
                 rangeAttack();
         }
+        AddReward(CalculateAngleReward());
         // Reduce reward player hp is at player Health
         AddReward(-aoeTouchingCount/400.0f); // 0.0025f per aoe
         AddReward(-0.0005f); //   1/2000
         if (lastBossHealth > bossHealth.getCurrentHealth())
         {
-            AddReward( (lastBossHealth-bossHealth.getCurrentHealth())/100.0f ); // 0.01 per 1 hp
+            AddReward( (lastBossHealth-bossHealth.getCurrentHealth())/10.0f ); // 0.1 per 1 hp
         }
             
         if (playerHealth.currentHealth <= 0)
@@ -129,13 +133,44 @@ public class PlayerAgent : Agent {
 
     public override void AgentReset()
     {
-        
-        gameObject.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
-        gameObject.transform.Rotate(new Vector3(0, 1, 1), Random.Range(-10f, 10f));
+
+        gameObject.transform.rotation = Quaternion.identity;
+      ////gameObject.transform.Rotate(new Vector3(0, 1, 1), Random.Range(-10f, 10f));
         gameObject.transform.position = new Vector3(0, 1f, -5)
             + gameInstance.transform.position;
+
+        boss.transform.position = gameInstance.transform.position;
+        boss.transform.position += new Vector3(0, 2f, 0);
+        bossHealth.resetHealth();
+        playerHealth.resetHealth();
+        gameInstanceManager.DestroyAllAoe();
+
+
+        myTime = 0.0F;
+        attackDelay = 0.8f;
+        attackingTime = 0.8f;
+        nextFire = 0.0f;
+        attacking = false;
+
         //Reset the parameters when the Agent is reset.
         SetResetParameters();
+    }
+
+    float CalculateAngleReward()
+    {
+        Vector3 bossPos = boss.transform.position;
+        bossPos.y = 0;
+        dot = Vector3.Dot(transform.forward, (bossPos - transform.position).normalized);
+        angle = Mathf.Acos(dot) * Mathf.Rad2Deg;  // 0-180     0-90 = + , 90-180 = -
+                                                  //          close to 0 is + much 
+        if (angle < 90.0f)
+        {
+            return (90f - angle) / (90f * 500f);
+        }
+        else // 90-180
+        {
+            return -(angle - 90f) / (90f * 500f);
+        }
     }
 
 
@@ -189,8 +224,8 @@ public class PlayerAgent : Agent {
     void rangeAttack()
     {   
         nextFire = myTime + attackDelay;
-        Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation);
-        Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation);
+        Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation).transform.parent = gameInstanceManager.transform;
+        Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation).transform.parent = gameInstanceManager.transform;
         nextFire = nextFire - myTime;
         myTime = 0.0f;
         attacking = true;

@@ -13,7 +13,9 @@ namespace MLAgents.Tests
             var tags = new[] {"test", "test_1"};
 
             var go = new GameObject("MyGameObject");
+#pragma warning disable CS0618 // Type or member is obsolete
             var rayPer3D = go.AddComponent<RayPerception3D>();
+#pragma warning restore CS0618 // Type or member is obsolete
             var result = rayPer3D.Perceive(1f, angles, tags);
             Assert.IsTrue(result.Count == angles.Length * (tags.Length + 2));
         }
@@ -25,7 +27,9 @@ namespace MLAgents.Tests
             var tags = new[] {"test", "test_1"};
 
             var go = new GameObject("MyGameObject");
+#pragma warning disable CS0618 // Type or member is obsolete
             var rayPer2D = go.AddComponent<RayPerception2D>();
+#pragma warning restore CS0618 // Type or member is obsolete
             var result = rayPer2D.Perceive(1f, angles,
                 tags);
             Assert.IsTrue(result.Count == angles.Length * (tags.Length + 2));

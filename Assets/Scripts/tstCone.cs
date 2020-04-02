@@ -8,14 +8,22 @@ public class tstCone : MonoBehaviour {
     public float minDist;
     public float maxDist;
 
+    public float thickness;
+
     private void Update()
     {
-        MeshFilter meshFilter = GetComponent<MeshFilter>();
-        meshFilter.mesh = GenerateConeMesh(gameObject, angle, minDist, maxDist);
-        GetComponent<MeshCollider>().sharedMesh = meshFilter.mesh;
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            MeshFilter meshFilter = GetComponent<MeshFilter>();
+            meshFilter.mesh = GenerateConeMesh(gameObject, angle, minDist, maxDist);
+            MeshCollider meshCollider = GetComponent<MeshCollider>();
+            meshCollider.sharedMesh = meshFilter.mesh;
+            meshCollider.bounds.Expand(new Vector3(0, 1, 0));
+            //UpdateoldVerticesgonCollider2D(meshFilter);
+        }
     }
 
-    public static Mesh GenerateConeMesh(GameObject gameObj, float angle_fov, float dist_min, float dist_max)
+    public Mesh GenerateConeMesh(GameObject gameObj, float angle_fov, float dist_min, float dist_max)
     {
         int quality = 30;
 
@@ -24,16 +32,16 @@ public class tstCone : MonoBehaviour {
         mesh.vertices = new Vector3[4 * quality];   // Could be of size [2 * quality + 2] if circle segment is continuous
         mesh.triangles = new int[3 * 2 * quality];
 
-        Vector3[] normals = new Vector3[4 * quality];
+        //Vector3[] normals = new Vector3[4 * quality];
         Vector2[] uv = new Vector2[4 * quality];
 
         for (int i = 0; i < uv.Length; i++)
             uv[i] = new Vector2(0, 0);
-        for (int i = 0; i < normals.Length; i++)
-            normals[i] = new Vector3(0, 1, 0);
+        //for (int i = 0; i < normals.Length; i++)
+        //    normals[i] = new Vector3(0, 1, 0);
 
         mesh.uv = uv;
-        mesh.normals = normals;
+        //mesh.normals = normals;
 
         //------------- PART 2----------------//
         float angle_lookat = GetLookAtAngle(gameObj);
@@ -91,14 +99,75 @@ public class tstCone : MonoBehaviour {
 
         }
 
-        mesh.vertices = vertices;
-        mesh.triangles = triangles;
+        //mesh.vertices = vertices;
+        //mesh.triangles = triangles;
 
-        return mesh;
+        return Extrude(vertices,triangles);
     }
 
     static float GetLookAtAngle(GameObject gameObj)
     {
         return 90 - Mathf.Rad2Deg * Mathf.Atan2(gameObj.transform.forward.z, gameObj.transform.forward.x); // Left handed CW. z = angle 0, x = angle 90
+    }
+
+    public Mesh Extrude(Vector3[] oldVertices, int[] tris)
+    {
+        Vector3[] vertices = new Vector3[oldVertices.Length * 2];
+        
+        for(int i=0;i<oldVertices.Length;i++)
+        {
+            vertices[i].x = oldVertices[i].x;
+            vertices[i].y = 0;
+            vertices[i].z = oldVertices[i].z; // front vertex
+            vertices[i+oldVertices.Length].x = oldVertices[i].x;
+            vertices[i+oldVertices.Length].y = -thickness;
+            vertices[i+oldVertices.Length].z = oldVertices[i].z;  // back vertex    
+        }
+        int[] triangles = new int[tris.Length*2+oldVertices.Length*6];
+        int count_tris = 0;
+        for(int i=0;i<tris.Length;i+=3)
+        {
+            triangles[i] = tris[i];
+            triangles[i+1] = tris[i+1];
+            triangles[i+2] = tris[i+2];
+        } // front vertices
+        count_tris+=tris.Length;
+        for(int i=0;i<tris.Length;i+=3)
+        {
+            triangles[count_tris+i] = tris[i+2]+oldVertices.Length;
+            triangles[count_tris+i+1] = tris[i+1]+oldVertices.Length;
+            triangles[count_tris+i+2] = tris[i]+oldVertices.Length;
+        } // back vertices
+        count_tris+=tris.Length;
+        //Debug.Log(count_tris);
+        for (int i = 0; i < oldVertices.Length-1; i++)
+        {
+            // triangles around the perimeter of the object
+            int n = (i + 1) % oldVertices.Length;
+            //if (i ==  0)
+            //{
+                Debug.Log(vertices[n]);
+                Debug.Log(vertices[i + oldVertices.Length]);
+                Debug.Log(vertices[i]);
+                Debug.Log(vertices[n]);
+                Debug.Log(vertices[n + oldVertices.Length]);
+                Debug.Log(vertices[i + oldVertices.Length]);
+            Debug.Log("------------------------");
+            //}
+            triangles[count_tris] = n;
+            triangles[count_tris + 1] = i + oldVertices.Length;
+            triangles[count_tris + 2] = i;
+            triangles[count_tris + 3] = n;
+            triangles[count_tris + 4] = n + oldVertices.Length;
+            triangles[count_tris + 5] = i + oldVertices.Length;
+            count_tris += 6;
+        }
+        Mesh m = new Mesh();
+        m.vertices = vertices;
+        m.triangles = triangles;
+        m.RecalculateNormals();
+        m.RecalculateBounds();
+        UnityEditor.MeshUtility.Optimize(m);
+        return m;
     }
 }

@@ -23,6 +23,7 @@ public class BossHealth : MonoBehaviour
         //    hpText = GameObject.Find("BossHpText").GetComponent<Text>();
         //}
         currentHealth = maxHealth;
+        if (hpText)
         hpText.text = currentHealth + "/" + maxHealth;
     }
     
@@ -38,5 +39,10 @@ public class BossHealth : MonoBehaviour
     public int getCurrentHealth()
     {
         return currentHealth;
+    }
+
+    public void resetHealth()
+    {
+        currentHealth = maxHealth;
     }
 }
