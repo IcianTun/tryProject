@@ -1,42 +1,62 @@
 2019
 
-ml-agents: "12.0.1"
+Boss
 
-barracuda: "0.3.2-preview"
+	- Attacks1
+		- Action [SubAttack or Move or Blank]
+		- Action [SubAttack or Move or Blank]
+		- Action [SubAttack or Move or Blank]
+	- Attacks2
+		- Action [SubAttack or Move or Blank]
+		- Action [SubAttack or Move or Blank]
+		- Action [SubAttack or Move or Blank]
 
-commands
 
->mlagents-learn config/trainer_config.yaml --train --run-id=testPlayer301
+SubAttacks Params
 
->pip install mlagents==0.12.1
-
-
-
-observation 
-
-	ตำแหน่งบอส 
-	
-	ตำแหน่งผู้เล่น 
-	
-	จำนวนพื้นการโจมตีของบอสที่กำลังเหยียบอยู่
-	
-	angle(playerForward,BossPosition)
+	- DelayBeforeActive [0-2]
+	- DelayBeforeNext [0-2]
+	- AoeTimer [3-7]
+	- Damage [5,25]
 
 	
-Vector Action space: (Discrete) 4 Branches:
+	Subattack at boss & Subattack at player
+		- AoeType [Square or CIrcle]
+	Subattack at Coordinate
+		- CoordinateName [CoordinateName or none]
+		if none 
+			- xPos, zPos [-15,15]
+	Subattack toward player
+		+ plusDistance [-10,10]
+		+ minLength [5,10]
+		AoeType Square
+	
+		
+Move Params
 
-	Forward Motion (3 possible actions: Forward, Backwards, No Action)
-	
-	Side Motion (3 possible actions: Left, Right, No Action)
-	
-	Rotation (3 possible actions: Rotate Left, Rotate Right, No Action)
-	
-	Attack (3 possible actions: Melee, Range, No Action)
+	- DelayBefore
+	- timeToMove
+	- DelayAfter
 
-	
-+- reward angle-90 ( if > 90 , reward = -(angle-90) ) ( if < 90 , reward =  +90-angle)
--reward ถ้ากำลังเหยียบพื้น aoe อยู่
--reward ตามเวลา (ทุกครั้งที่ update)
-+reward เมื่อบอสลด
--reward เมื่อเลือดตัวเองลด
+	Move to Coordinate (base)
+		- CoordinateName [CoordinateName or none]
+		if none 
+			- xPos, zPos [-15,15]
+	Move toward player
+		+ distanceOffset [-10,10] ( same as plusDistance )
 
+
+AoeType
+	
+	Square
+		- xSize, zSize [4,30]
+		- rotation [0,180]
+	Circle
+		- diameter [4,30]
+	
+	
+	
+Coordinate
+	
+	Inner NESW , NW NE SE SW
+	Outer NESW , NW NE EN ES SE SW WS WN , Corner NE NW SE SW
