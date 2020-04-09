@@ -11,9 +11,14 @@ public class BossHealth : MonoBehaviour
     public Image healthbar;
     public Text hpText;
 
+    private BossAttackController bossAttackController;
+    private BossMovementController bossMovementController;
+
     // Use this for initialization
     void Start()
     {
+        bossAttackController = GetComponent<BossAttackController>();
+        bossMovementController = GetComponent<BossMovementController>();
         //if (healthbar == null)
         //{
         //    healthbar = GameObject.Find("BossGreen").GetComponent<Image>();
@@ -41,8 +46,10 @@ public class BossHealth : MonoBehaviour
         return currentHealth;
     }
 
-    public void resetHealth()
+    public void ResetHealth()
     {
         currentHealth = maxHealth;
+        bossAttackController.MyReset();
+        bossMovementController.Stop();
     }
 }

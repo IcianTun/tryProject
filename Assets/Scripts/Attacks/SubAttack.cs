@@ -25,8 +25,8 @@ public abstract class SubAttack : MonoBehaviour,IAction {
     [Tooltip("Linger Time of AoE after activated")]
     public float lingerTime = 0f;
 
-    [Range(0, 20)]
-    public int damage = 5;
+    [Range(5, 40)]
+    public int damage = 10;
 
     // --------------------------------------------------------------------------
     [Header("Transform Things")]

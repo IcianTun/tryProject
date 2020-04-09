@@ -12,10 +12,9 @@ public class BossAttackController : MonoBehaviour {
     public float delayStart = 5.0f;
     private float myTime = 0.0f;
     private float waitDelayForNextAttack;
-
+    
     // Use this for initialization
     void Start () {
-        //player = gameInstance.transform.Find("Player").gameObject;
         if (attackList == null)
         {
             attackList = new List<Attack>();
@@ -27,8 +26,6 @@ public class BossAttackController : MonoBehaviour {
             }
             waitDelayForNextAttack = delayStart;
         }
-
-        //Debug.Log(PresettedAttacks.Length);
 
         // This work
         //attack1 = gameObject.AddComponent<Attack1>();
@@ -71,6 +68,7 @@ public class BossAttackController : MonoBehaviour {
         // get random attack from IAttack[] array and perform it
         int a = Random.Range(0, attackList.Count);
         Attack attack = attackList[a];
+        //Debug.Log(attack.gameObject.name);
         StartCoroutine(attack.PerformSubAttacks(gameInstanceManager));
         waitDelayForNextAttack = attack.totalSubAttacksExecuteTime + attack.delayAfterAttack;
 
@@ -96,5 +94,6 @@ public class BossAttackController : MonoBehaviour {
          delayStart = 5.0f;
          myTime = 0.0f;
          waitDelayForNextAttack = delayStart;
+         StopAllCoroutines();
     }
 }

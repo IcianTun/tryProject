@@ -86,8 +86,4 @@ public class Attack : MonoBehaviour {
     {
         subAttacks = newSubAttack;
     }
-    virtual public void Hello()
-    {
-        Debug.Log("hello from base Attack");
-    }
 }

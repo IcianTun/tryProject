@@ -6,7 +6,7 @@ barracuda: "0.3.2-preview"
 
 commands
 
-mlagents-learn config/trainer_config.yaml --run-id=testPlayer301 --train
+mlagents-learn config/trainer_config.yaml --train --run-id=testPlayer301
 
 pip install mlagents==0.12.1
 

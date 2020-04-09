@@ -26,7 +26,16 @@ default:
 PlayerAgent:
     hidden_units: 256
     num_layers: 3
-    max_steps: 1.0e6
+    max_steps: 2.0e6
+
+
+PlayerAgent2:
+    hidden_units: 256
+    num_layers: 3
+    max_steps: 2.0e6
+    use_recurrent: true
+    sequence_length: 64
+    memory_size: 256
     
 FoodCollector:
     normalize: false

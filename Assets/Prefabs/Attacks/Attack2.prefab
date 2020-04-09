@@ -223,16 +223,16 @@ MonoBehaviour:
   delayBeforeNext: 1
   aoeTimer: 3
   lingerTime: 0
-  damage: 7
-  aoeType: 0
+  damage: 10
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
-  xSize: 5
+  aoeType: 0
+  xSize: 3
   zSize: 2
   diameter: 0
-  plusDistance: 4
+  plusDistance: 2
   minLength: 2
 --- !u!114 &114198147101691806
 MonoBehaviour:
@@ -249,13 +249,13 @@ MonoBehaviour:
   delayBeforeNext: 1
   aoeTimer: 3
   lingerTime: 0
-  damage: 5
-  aoeType: 0
+  damage: 20
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
-  xSize: 15
+  aoeType: 0
+  xSize: 12
   zSize: 1
   diameter: 0
   plusDistance: -4
@@ -278,7 +278,7 @@ MonoBehaviour:
   - {fileID: 1424593391383014}
   - {fileID: 1876607618905926}
   myString: 
-  totalSubAttacksExecuteTime: 4.2
+  totalSubAttacksExecuteTime: 9.4
   delayAfterAttack: 1.5
 --- !u!114 &114778762084790192
 MonoBehaviour:
@@ -293,16 +293,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeActive: 1
   delayBeforeNext: 1
-  aoeTimer: 4
+  aoeTimer: 3
   lingerTime: 0
-  damage: 5
-  aoeType: 0
+  damage: 12
   coordinateName: 0
   xPos: 0
   zPos: 0
-  rotation: 0
-  xSize: 1
-  zSize: 1
+  rotation: 45
+  aoeType: 0
+  xSize: 8
+  zSize: 5
   diameter: 1
 --- !u!114 &114855809922118196
 MonoBehaviour:
@@ -317,14 +317,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delayBeforeActive: 0
   delayBeforeNext: 2
-  aoeTimer: 4
+  aoeTimer: 3
   lingerTime: 0
-  damage: 5
-  aoeType: 1
+  damage: 15
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
+  aoeType: 1
   xSize: 1
   zSize: 1
   diameter: 4

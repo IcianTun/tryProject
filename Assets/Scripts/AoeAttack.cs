@@ -95,9 +95,5 @@ public class AoeAttack : MonoBehaviour {
         this.lingerTime = lingerTime;
         this.damagePoint = damage;
     }
-
-    public void SetDamage(int newDamage)
-    {
-        damagePoint = newDamage;
-    }
+    
 }

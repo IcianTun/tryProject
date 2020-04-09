@@ -33,10 +33,10 @@ public class PlayerHealth : MonoBehaviour {
         if(healthbar)
         healthbar.fillAmount = (float)currentHealth / maxHealth;
         if (agent)
-            agent.AddReward(-damagePoint / 100f);
+            agent.AddReward(-damagePoint / 20f);
     }
 
-    public void resetHealth()
+    public void ResetHealth()
     {
         currentHealth = maxHealth;
         if (healthbar)

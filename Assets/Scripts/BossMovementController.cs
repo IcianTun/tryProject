@@ -31,4 +31,10 @@ public class BossMovementController : MonoBehaviour {
             yield return null;
         }
     }
+
+    public void Stop()
+    {
+        StopAllCoroutines();
+
+    }
 }

@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float movementSpeed = 4f;
+    [Header("Enable Here")]
+    public bool enableManualControl = true;
+
+    [Header("For Testing")]
+    public float movementSpeed = 5f;
     public float rotationSpeed = 90f;
     Rigidbody playerRigidbody;
-    public int count = 0;
-    List<Collider> others = new List<Collider>();
-    public float h;
-    public float v;
+
+    public GameObject boss;
+    public bool isToRight;
+    public bool isToLeft;
+    public bool isFront;
 
     void Awake()
     {
@@ -18,43 +23,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        h = Input.GetAxisRaw("Horizontal");
-        v = Input.GetAxisRaw("Vertical");
-        Move(h, v);
-        Turning(Input.GetKey(KeyCode.Q), Input.GetKey(KeyCode.E));
+        if (enableManualControl) {
+            float v = Input.GetAxisRaw("Vertical");
+            float h = Input.GetAxisRaw("Horizontal");
+            Move(v, h);
+            Turning(Input.GetKey(KeyCode.Q), Input.GetKey(KeyCode.E));
+        }
     }
 
     private void Update()
     {
-        for (int i = others.Count -1; i >= 0 ; i--){
-            if (others[i] == null)
-            {
-                count -= 1;
-                others.RemoveAt(i);
-            }
-        }
+        isToRight = IsBossObjectToTheRight();
+        isToLeft = !isToRight;
+        isFront = IsBossObjectToTheFront();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Aoe")
-        {
-            count += 1;
-            others.Add(other);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Aoe")
-        {
-            count -= 1;
-            others.Remove(other);
-        }
-    }
-
-
-    void Move(float h, float v)
+    public void Move(float v, float h)
     {
         Vector3 vertical = transform.forward;
         Vector3 horizontal = transform.right;
@@ -64,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         ////playerRigidbody.AddForce(movement - playerRigidbody.velocity, ForceMode.VelocityChange);
     }
 
-    void Turning(bool isTurnLeft, bool isTurnRight)
+    public void Turning(bool isTurnLeft, bool isTurnRight)
     {
         if (isTurnRight&&!isTurnLeft)
         {
@@ -77,5 +61,24 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody.MoveRotation(playerRigidbody.rotation * deltaRotation);
         }
     }
-    
+
+    bool IsBossObjectToTheRight()
+    {
+        Vector3 bossPosition = boss.transform.position;
+        bossPosition.y = 0;
+        Vector3 playerPosition = transform.position;
+        playerPosition.y = 0;
+
+        return Vector3.Dot(transform.right, bossPosition - playerPosition) > 0;
+    }
+
+    bool IsBossObjectToTheFront()
+    {
+        Vector3 bossPosition = boss.transform.position;
+        bossPosition.y = 0;
+        Vector3 playerPosition = transform.position;
+        playerPosition.y = 0;
+
+        return Vector3.Dot(transform.forward, bossPosition - playerPosition) > 0;
+    }
 }

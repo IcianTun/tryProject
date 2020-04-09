@@ -43,6 +43,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1328567055502410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4198682916297160}
+  - component: {fileID: 114116130612215024}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1610994993023220
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,6 +86,22 @@ GameObject:
   - component: {fileID: 114255978322757790}
   m_Layer: 0
   m_Name: AttackTowardPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1780704897676554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4354136289882580}
+  - component: {fileID: 114193557146622580}
+  m_Layer: 0
+  m_Name: MoveToPlayerBehind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,6 +136,19 @@ Transform:
   m_Father: {fileID: 4308307260653056}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4198682916297160
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328567055502410}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4266512224866566
 Transform:
   m_ObjectHideFlags: 1
@@ -127,12 +172,27 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4909611737296826}
   - {fileID: 4769346504223624}
+  - {fileID: 4909611737296826}
   - {fileID: 4266512224866566}
   - {fileID: 4002340968981494}
+  - {fileID: 4354136289882580}
+  - {fileID: 4198682916297160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4354136289882580
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780704897676554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4769346504223624
 Transform:
@@ -145,7 +205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4308307260653056}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4909611737296826
 Transform:
@@ -158,8 +218,32 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4308307260653056}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114116130612215024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328567055502410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893680b9a24d77246bf5f654891f133a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeActive: 1
+  delayBeforeNext: 2
+  aoeTimer: 4
+  lingerTime: 0
+  damage: 10
+  coordinateName: 0
+  xPos: 0
+  zPos: 0
+  rotation: 0
+  aoeType: 1
+  xSize: 5
+  zSize: 5
+  diameter: 6
 --- !u!114 &114158992115289880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,20 +255,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a66c15b034279649b8fe331452b5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
   delayBeforeActive: 1
   delayBeforeNext: 0
-  aoeTimer: 4
+  aoeTimer: 6
   lingerTime: 2
   damage: 5
-  aoeType: 1
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
+  aoeType: 1
   xSize: 0
   zSize: 0
-  diameter: 10
+  diameter: 7
+--- !u!114 &114193557146622580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780704897676554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5049a42d4783ea44b9470262bc806c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coordinateName: 0
+  xPos: 0
+  zPos: 0
+  delaybefore: 0
+  timeToMove: 1
+  delayAfter: 0
+  distanceOffset: 2
 --- !u!114 &114255978322757790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -196,21 +297,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa93a10694d7ad044bbf515658365aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
   delayBeforeActive: 1
   delayBeforeNext: 2
   aoeTimer: 4
   lingerTime: 0
   damage: 5
-  aoeType: 0
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
-  xSize: 20
+  aoeType: 0
+  xSize: 10
   zSize: 1
   diameter: 1
-  plusDistance: 20
+  plusDistance: 1
+  minLength: 5
 --- !u!114 &114447126370424498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,6 +328,7 @@ MonoBehaviour:
   - {fileID: 1648932189015038}
   - {fileID: 1942101339503362}
   - {fileID: 1320476422293508}
+  - {fileID: 1780704897676554}
   myString: 
   totalSubAttacksExecuteTime: 7
   delayAfterAttack: 1.5
@@ -242,8 +344,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coordinateName: 25
-  xPos: -10.3
-  zPos: 5.4
+  xPos: 6.6
+  zPos: -5.8
   delaybefore: 0
   timeToMove: 1
   delayAfter: 1
@@ -258,17 +360,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a66c15b034279649b8fe331452b5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
   delayBeforeActive: 1
   delayBeforeNext: 0
-  aoeTimer: 4
+  aoeTimer: 6
   lingerTime: 3
   damage: 5
-  aoeType: 0
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
-  xSize: 10
-  zSize: 10
+  aoeType: 0
+  xSize: 6
+  zSize: 6
   diameter: 1

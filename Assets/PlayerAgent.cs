@@ -29,13 +29,63 @@ public class PlayerAgent : Agent {
 
     Sword swordScript;
     float myTime = 0.0F;
-    float attackDelay = 0.8f;
+    float attackDelay = 1.0f;
     float attackingTime = 0.8f;
     float nextFire;
     bool attacking;
 
     public float angle;
     public float dot;
+
+    public Detector detectorForward;
+    public Detector detectorBehind;
+    public Detector detectorLeft;
+    public Detector detectorRight;
+
+    public Detector detectorForwardLeft;
+    public Detector detectorForwardRight;
+    public Detector detectorBehindLeft;
+    public Detector detectorBehindRight;
+
+    public Detector detectorForward2;
+    public Detector detectorBehind2;
+    public Detector detectorLeft2;
+    public Detector detectorRight2;
+
+    [Header("Range 3")]
+    public Detector detectorForward3;
+    public Detector detectorForward2Left;
+    public Detector detectorForward2Right;
+    public Detector detectorBehind3;
+    public Detector detectorBehind2Left;
+    public Detector detectorBehind2Right;
+    public Detector detectorLeft3;
+    public Detector detectorLeft2Forward;
+    public Detector detectorLeft2Behind;
+    public Detector detectorRight3;
+    public Detector detectorRight2Forward;
+    public Detector detectorRight2Behind;
+
+    [Header("Range 4")]
+    public Detector detectorForward4;
+    public Detector detectorForward3Left;
+    public Detector detectorForward3Right;
+    public Detector detectorBehind4;
+    public Detector detectorBehind3Left;
+    public Detector detectorBehind3Right;
+    public Detector detectorLeft4;
+    public Detector detectorLeft3Forward;
+    public Detector detectorLeft3Behind;
+    public Detector detectorRight4;
+    public Detector detectorRight3Forward;
+    public Detector detectorRight3Behind;
+    public Detector detectorForwardLeftCorner;
+    public Detector detectorForwardRightCorner;
+    public Detector detectorBehindLeftCorner;
+    public Detector detectorBehindRightCorner;
+
+    
+
     public override void InitializeAgent()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -63,7 +113,98 @@ public class PlayerAgent : Agent {
         // vector to boss
         AddVectorObs(boss.transform.position - gameObject.transform.position);       // Later: Changing boss object affect this
         AddVectorObs(aoeTouchingCount/10.0f);
-        AddVectorObs(angle/180f);
+        Vector3 bossPos = boss.transform.position;
+        bossPos.y = 0;
+        dot = Vector3.Dot(transform.forward, (bossPos - transform.position).normalized);
+        float a = Mathf.Acos(dot) * Mathf.Rad2Deg;  // 0-180     0-90 = + , 90-180 = -
+                                                  //          close to 0 is + much 
+        AddVectorObs(a/180f);
+
+        AddVectorObs(detectorForward.aoeTouchingCount);
+        AddVectorObs(detectorBehind.aoeTouchingCount);
+        AddVectorObs(detectorLeft.aoeTouchingCount);
+        AddVectorObs(detectorRight.aoeTouchingCount);
+        AddVectorObs(detectorForward.isOutOfBoundary);
+        AddVectorObs(detectorBehind.isOutOfBoundary);
+        AddVectorObs(detectorLeft.isOutOfBoundary);
+        AddVectorObs(detectorRight.isOutOfBoundary);
+
+        AddVectorObs(detectorForwardLeft.aoeTouchingCount);
+        AddVectorObs(detectorForwardLeft.isOutOfBoundary);
+        AddVectorObs(detectorForwardRight.aoeTouchingCount);
+        AddVectorObs(detectorForwardRight.isOutOfBoundary);
+        AddVectorObs(detectorBehindLeft.aoeTouchingCount);
+        AddVectorObs(detectorBehindLeft.isOutOfBoundary);
+        AddVectorObs(detectorBehindRight.aoeTouchingCount);
+        AddVectorObs(detectorBehindRight.isOutOfBoundary);
+
+        AddVectorObs(detectorForward2.aoeTouchingCount);
+        AddVectorObs(detectorBehind2.aoeTouchingCount);
+        AddVectorObs(detectorLeft2.aoeTouchingCount);
+        AddVectorObs(detectorRight2.aoeTouchingCount);
+        AddVectorObs(detectorForward2.isOutOfBoundary);
+        AddVectorObs(detectorBehind2.isOutOfBoundary);
+        AddVectorObs(detectorLeft2.isOutOfBoundary);
+        AddVectorObs(detectorRight2.isOutOfBoundary);
+
+        AddVectorObs(detectorForward3.aoeTouchingCount);
+        AddVectorObs(detectorForward2Left.aoeTouchingCount);
+        AddVectorObs(detectorForward2Right.aoeTouchingCount);
+        AddVectorObs(detectorBehind3.aoeTouchingCount);
+        AddVectorObs(detectorBehind2Left.aoeTouchingCount);
+        AddVectorObs(detectorBehind2Right.aoeTouchingCount);
+        AddVectorObs(detectorLeft3.aoeTouchingCount);
+        AddVectorObs(detectorLeft2Forward.aoeTouchingCount);
+        AddVectorObs(detectorLeft2Behind.aoeTouchingCount);
+        AddVectorObs(detectorRight3.aoeTouchingCount);
+        AddVectorObs(detectorRight2Forward.aoeTouchingCount);
+        AddVectorObs(detectorRight2Behind.aoeTouchingCount);
+        AddVectorObs(detectorForward3.isOutOfBoundary);
+        AddVectorObs(detectorForward2Left.isOutOfBoundary);
+        AddVectorObs(detectorForward2Right.isOutOfBoundary);
+        AddVectorObs(detectorBehind3.isOutOfBoundary);
+        AddVectorObs(detectorBehind2Left.isOutOfBoundary);
+        AddVectorObs(detectorBehind2Right.isOutOfBoundary);
+        AddVectorObs(detectorLeft3.isOutOfBoundary);
+        AddVectorObs(detectorLeft2Forward.isOutOfBoundary);
+        AddVectorObs(detectorLeft2Behind.isOutOfBoundary);
+        AddVectorObs(detectorRight3.isOutOfBoundary);
+        AddVectorObs(detectorRight2Forward.isOutOfBoundary);
+        AddVectorObs(detectorRight2Behind.isOutOfBoundary);
+
+        AddVectorObs(detectorForward4.aoeTouchingCount);
+        AddVectorObs(detectorForward3Left.aoeTouchingCount);
+        AddVectorObs(detectorForward3Right.aoeTouchingCount);
+        AddVectorObs(detectorBehind4.aoeTouchingCount);
+        AddVectorObs(detectorBehind3Left.aoeTouchingCount);
+        AddVectorObs(detectorBehind3Right.aoeTouchingCount);
+        AddVectorObs(detectorLeft4.aoeTouchingCount);
+        AddVectorObs(detectorLeft3Forward.aoeTouchingCount);
+        AddVectorObs(detectorLeft3Behind.aoeTouchingCount);
+        AddVectorObs(detectorRight4.aoeTouchingCount);
+        AddVectorObs(detectorRight3Forward.aoeTouchingCount);
+        AddVectorObs(detectorRight3Behind.aoeTouchingCount);
+        AddVectorObs(detectorForwardLeftCorner.aoeTouchingCount);
+        AddVectorObs(detectorForwardRightCorner.aoeTouchingCount);
+        AddVectorObs(detectorBehindLeftCorner.aoeTouchingCount);
+        AddVectorObs(detectorBehindRightCorner.aoeTouchingCount);
+        AddVectorObs(detectorForward4.isOutOfBoundary);
+        AddVectorObs(detectorForward3Left.isOutOfBoundary);
+        AddVectorObs(detectorForward3Right.isOutOfBoundary);
+        AddVectorObs(detectorBehind4.isOutOfBoundary);
+        AddVectorObs(detectorBehind3Left.isOutOfBoundary);
+        AddVectorObs(detectorBehind3Right.isOutOfBoundary);
+        AddVectorObs(detectorLeft4.isOutOfBoundary);
+        AddVectorObs(detectorLeft3Forward.isOutOfBoundary);
+        AddVectorObs(detectorLeft3Behind.isOutOfBoundary);
+        AddVectorObs(detectorRight4.isOutOfBoundary);
+        AddVectorObs(detectorRight3Forward.isOutOfBoundary);
+        AddVectorObs(detectorRight3Behind.isOutOfBoundary);
+        AddVectorObs(detectorForwardLeftCorner.isOutOfBoundary);
+        AddVectorObs(detectorForwardRightCorner.isOutOfBoundary);
+        AddVectorObs(detectorBehindLeftCorner.isOutOfBoundary);
+        AddVectorObs(detectorBehindRightCorner.isOutOfBoundary);
+
     }
 
 
@@ -79,7 +220,7 @@ public class PlayerAgent : Agent {
         var forwardMotionAction = (int)vectorAction[0];
         var sideMotionAction = (int)vectorAction[1];
         var rotateAction = (int)vectorAction[2];
-        var attackAction = (int)vectorAction[3]; // 0 = no attack , 1 = melee , 2 = range 
+        var attackAction = (int)vectorAction[3]; // 0 = no action , 1 = melee , 2 = range , 3 move 
 
         if (forwardMotionAction == 1)
             v = 1;
@@ -101,22 +242,23 @@ public class PlayerAgent : Agent {
         if (!attacking)
         {
             Move(v, h);
-            Turning(isTurnLeft, isTurnRight);        
-        }
-        if (myTime > nextFire)
-        {
-            if (attackAction == 1)
-                meleeAttack();
-            else if (attackAction == 2)
-                rangeAttack();
+            Turning(isTurnLeft, isTurnRight);
+            if (myTime > nextFire)
+            {
+                if (attackAction == 1)
+                    meleeAttack();
+                else if (attackAction == 2)
+                    rangeAttack();
+            }
         }
         AddReward(CalculateAngleReward());
         // Reduce reward player hp is at player Health
-        AddReward(-aoeTouchingCount/400.0f); // 0.0025f per aoe
-        AddReward(-0.0005f); //   1/2000
+        AddReward(-aoeTouchingCount/100.0f);
+        AddReward(-0.0005f); //
         if (lastBossHealth > bossHealth.getCurrentHealth())
         {
-            AddReward( (lastBossHealth-bossHealth.getCurrentHealth())/10.0f ); // 0.1 per 1 hp
+            AddReward( (lastBossHealth-bossHealth.getCurrentHealth())/20.0f ); // 0.1 per 2 hp
+            lastBossHealth = bossHealth.getCurrentHealth();
         }
             
         if (playerHealth.currentHealth <= 0)
@@ -136,19 +278,16 @@ public class PlayerAgent : Agent {
 
         gameObject.transform.rotation = Quaternion.identity;
       ////gameObject.transform.Rotate(new Vector3(0, 1, 1), Random.Range(-10f, 10f));
-        gameObject.transform.position = new Vector3(0, 1f, -5)
+        gameObject.transform.position = new Vector3(0, 1, -5)
             + gameInstance.transform.position;
 
-        boss.transform.position = gameInstance.transform.position;
-        boss.transform.position += new Vector3(0, 2f, 0);
-        bossHealth.resetHealth();
-        playerHealth.resetHealth();
+        boss.transform.position = new Vector3(0, 2, 0) + gameInstance.transform.position;
+        bossHealth.ResetHealth();
+        playerHealth.ResetHealth();
         gameInstanceManager.DestroyAllAoe();
 
 
         myTime = 0.0F;
-        attackDelay = 0.8f;
-        attackingTime = 0.8f;
         nextFire = 0.0f;
         attacking = false;
 
@@ -165,24 +304,17 @@ public class PlayerAgent : Agent {
                                                   //          close to 0 is + much 
         if (angle < 90.0f)
         {
-            return (90f - angle) / (90f * 500f);
+            return (90f - angle) / (90f * 200f);
         }
         else // 90-180
         {
-            return -(angle - 90f) / (90f * 500f);
+            return -(angle - 90f) / (90f * 200f);
         }
     }
 
 
     //------ Player Movement ------------------------------------------------------------------------------
 
-    //private void FixedUpdate()
-    //{
-    //    float h = Input.GetAxisRaw("Horizontal");
-    //    float v = Input.GetAxisRaw("Vertical");
-    //    Move(h, v);
-    //    Turning(Input.GetKey(KeyCode.Q), Input.GetKey(KeyCode.E));
-    //}
 
     void Move(float v, float h)
     {
@@ -206,6 +338,24 @@ public class PlayerAgent : Agent {
         {
             Quaternion deltaRotation = Quaternion.Euler(0, -rotationSpeed * Time.deltaTime, 0);
             playerRigidbody.MoveRotation(playerRigidbody.rotation * deltaRotation);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Aoe")
+        {
+            aoeTouchingCount += 1;
+            aoeTouching.Add(other);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Aoe")
+        {
+            aoeTouchingCount -= 1;
+            aoeTouching.Remove(other);
         }
     }
 
