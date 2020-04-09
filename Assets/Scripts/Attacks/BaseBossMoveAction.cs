@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BaseBossMoveAction : MonoBehaviour,IAction {
 
     public CoordinateName coordinateName;

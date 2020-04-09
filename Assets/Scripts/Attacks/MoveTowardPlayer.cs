@@ -21,6 +21,5 @@ public class MoveTowardPlayer : BaseBossMoveAction {
         Vector3 vectorTowardPlayer = (new Vector3(playerPosition.x - bossPosition.x, 0, playerPosition.z - bossPosition.z)).normalized;
         targetPos = gameInstance.boss.transform.position + vectorTowardPlayer * (distance + distanceOffset);
         bossMovementScript.MoveToPosition(targetPos, timeToMove, delaybefore);
-        //
     }
 }

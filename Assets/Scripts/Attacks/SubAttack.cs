@@ -25,7 +25,7 @@ public abstract class SubAttack : MonoBehaviour,IAction {
     [Tooltip("Linger Time of AoE after activated")]
     public float lingerTime = 0f;
 
-    [Range(5, 40)]
+    [Range(5, 25)]
     public int damage = 10;
 
     // --------------------------------------------------------------------------
@@ -42,8 +42,8 @@ public abstract class SubAttack : MonoBehaviour,IAction {
     [Header("Aoe Things")]
     public AoeType aoeType;
     [Header("Square Aoe Size")]
-    public float xSize = 5f;
-    public float zSize = 5f;
+    public float xSize = 4f;
+    public float zSize = 4f;
 
     [Header("Circle Aoe Size")]
     [Range(4f, 30f)]
