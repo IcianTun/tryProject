@@ -13,16 +13,24 @@ commands
 
 
 observation 
+
 	ตำแหน่งบอส 
+	
 	ตำแหน่งผู้เล่น 
+	
 	จำนวนพื้นการโจมตีของบอสที่กำลังเหยียบอยู่
+	
 	angle(playerForward,BossPosition)
 
 	
 Vector Action space: (Discrete) 4 Branches:
+
 	Forward Motion (3 possible actions: Forward, Backwards, No Action)
+	
 	Side Motion (3 possible actions: Left, Right, No Action)
+	
 	Rotation (3 possible actions: Rotate Left, Rotate Right, No Action)
+	
 	Attack (3 possible actions: Melee, Range, No Action)
 
 	
