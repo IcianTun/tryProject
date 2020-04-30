@@ -9,193 +9,271 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1682830037751016}
+  m_RootGameObject: {fileID: 1610994993023220}
   m_IsPrefabAsset: 1
---- !u!1 &1026920814155216
+--- !u!1 &1023010641970454
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4720424273386578}
-  - component: {fileID: 114198147101691806}
+  - component: {fileID: 4909611737296826}
+  - component: {fileID: 114465999259231108}
   m_Layer: 0
-  m_Name: SubAttack21_TowardPlayer
+  m_Name: Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1318471784196466
+--- !u!1 &1320476422293508
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4796662210142560}
-  - component: {fileID: 114095238413145720}
+  - component: {fileID: 4002340968981494}
+  - component: {fileID: 114158992115289880}
   m_Layer: 0
-  m_Name: SubAttack22_TowardPlayer
+  m_Name: AttackAtPlayer (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1424593391383014
+--- !u!1 &1328567055502410
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4804632377727858}
-  - component: {fileID: 114778762084790192}
+  - component: {fileID: 4198682916297160}
+  - component: {fileID: 114116130612215024}
   m_Layer: 0
-  m_Name: SubAttack At Player
+  m_Name: SubAttackAtBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1462204901913672
+--- !u!1 &1610994993023220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4135451418195198}
-  - component: {fileID: 114020154212064790}
+  - component: {fileID: 4308307260653056}
+  - component: {fileID: 114447126370424498}
   m_Layer: 0
-  m_Name: Move_TowardPlayer
+  m_Name: Attack4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1682830037751016
+--- !u!1 &1648932189015038
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4804267697991190}
-  - component: {fileID: 114314957551349152}
+  - component: {fileID: 4769346504223624}
+  - component: {fileID: 114255978322757790}
   m_Layer: 0
-  m_Name: Attack2
+  m_Name: AttackTowardPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1876607618905926
+--- !u!1 &1780704897676554
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4821907082087180}
-  - component: {fileID: 114855809922118196}
+  - component: {fileID: 4354136289882580}
+  - component: {fileID: 114193557146622580}
   m_Layer: 0
-  m_Name: SubAttack At Player (1)
+  m_Name: MoveToPlayerBehind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4135451418195198
+--- !u!1 &1942101339503362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4266512224866566}
+  - component: {fileID: 114666911377381058}
+  m_Layer: 0
+  m_Name: AttackAtPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4002340968981494
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462204901913672}
+  m_GameObject: {fileID: 1320476422293508}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4198682916297160
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1328567055502410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4804267697991190}
-  m_RootOrder: 0
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4720424273386578
+--- !u!4 &4266512224866566
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026920814155216}
+  m_GameObject: {fileID: 1942101339503362}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4804267697991190}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4796662210142560
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318471784196466}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4804267697991190}
+  m_Father: {fileID: 4308307260653056}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4804267697991190
+--- !u!4 &4308307260653056
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1682830037751016}
+  m_GameObject: {fileID: 1610994993023220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4135451418195198}
-  - {fileID: 4720424273386578}
-  - {fileID: 4796662210142560}
-  - {fileID: 4804632377727858}
-  - {fileID: 4821907082087180}
+  - {fileID: 4769346504223624}
+  - {fileID: 4909611737296826}
+  - {fileID: 4266512224866566}
+  - {fileID: 4002340968981494}
+  - {fileID: 4354136289882580}
+  - {fileID: 4198682916297160}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4804632377727858
+--- !u!4 &4354136289882580
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424593391383014}
+  m_GameObject: {fileID: 1780704897676554}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4804267697991190}
-  m_RootOrder: 3
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4821907082087180
+--- !u!4 &4769346504223624
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876607618905926}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_GameObject: {fileID: 1648932189015038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4804267697991190}
-  m_RootOrder: 4
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114020154212064790
+--- !u!4 &4909611737296826
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1023010641970454}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4308307260653056}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114116130612215024
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1462204901913672}
+  m_GameObject: {fileID: 1328567055502410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893680b9a24d77246bf5f654891f133a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeActive: 1
+  delayBeforeNext: 2
+  aoeTimer: 4
+  lingerTime: 0
+  damage: 10
+  coordinateName: 0
+  xPos: 0
+  zPos: 0
+  rotation: 0
+  aoeType: 1
+  xSize: 5
+  zSize: 5
+  diameter: 6
+--- !u!114 &114158992115289880
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320476422293508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a66c15b034279649b8fe331452b5a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeActive: 1
+  delayBeforeNext: 0
+  aoeTimer: 6
+  lingerTime: 2
+  damage: 5
+  coordinateName: 0
+  xPos: 0
+  zPos: 0
+  rotation: 0
+  aoeType: 1
+  xSize: 0
+  zSize: 0
+  diameter: 7
+--- !u!114 &114193557146622580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1780704897676554}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5049a42d4783ea44b9470262bc806c57, type: 3}
@@ -205,126 +283,94 @@ MonoBehaviour:
   xPos: 0
   zPos: 0
   delaybefore: 0
-  timeToMove: 0.4
-  delayAfter: 1
-  distanceOffset: -10
---- !u!114 &114095238413145720
+  timeToMove: 1
+  delayAfter: 0
+  distanceOffset: 2
+--- !u!114 &114255978322757790
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1318471784196466}
+  m_GameObject: {fileID: 1648932189015038}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa93a10694d7ad044bbf515658365aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeActive: 1
-  delayBeforeNext: 1
-  aoeTimer: 3
+  delayBeforeNext: 2
+  aoeTimer: 4
   lingerTime: 0
-  damage: 10
+  damage: 5
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
   aoeType: 0
-  xSize: 3
-  zSize: 2
-  diameter: 0
-  plusDistance: 2
-  minLength: 2
---- !u!114 &114198147101691806
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1026920814155216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa93a10694d7ad044bbf515658365aa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeActive: 1
-  delayBeforeNext: 1
-  aoeTimer: 3
-  lingerTime: 0
-  damage: 20
-  coordinateName: 0
-  xPos: 0
-  zPos: 0
-  rotation: 0
-  aoeType: 0
-  xSize: 12
+  xSize: 10
   zSize: 1
-  diameter: 0
-  plusDistance: -4
+  diameter: 1
+  plusDistance: 1
   minLength: 5
---- !u!114 &114314957551349152
+--- !u!114 &114447126370424498
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1682830037751016}
+  m_GameObject: {fileID: 1610994993023220}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db3e3ef30f1e6e04db7c46b3c6462de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PresettedSubAttack:
-  - {fileID: 1462204901913672}
-  - {fileID: 1026920814155216}
-  - {fileID: 1318471784196466}
-  - {fileID: 1424593391383014}
-  - {fileID: 1876607618905926}
+  PresettedActions:
+  - {fileID: 1648932189015038}
+  - {fileID: 1023010641970454}
+  - {fileID: 1942101339503362}
+  - {fileID: 1320476422293508}
+  - {fileID: 1780704897676554}
+  - {fileID: 1328567055502410}
   myString: 
-  totalSubAttacksExecuteTime: 9.4
+  totalSubAttacksExecuteTime: 0
   delayAfterAttack: 1.5
---- !u!114 &114778762084790192
+--- !u!114 &114465999259231108
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1424593391383014}
+  m_GameObject: {fileID: 1023010641970454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1ed2b5ebee40e4d9f9b255c978aed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coordinateName: 25
+  xPos: 6.6
+  zPos: -5.8
+  delaybefore: 0
+  timeToMove: 1
+  delayAfter: 1
+--- !u!114 &114666911377381058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1942101339503362}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a66c15b034279649b8fe331452b5a74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   delayBeforeActive: 1
-  delayBeforeNext: 1
-  aoeTimer: 3
-  lingerTime: 0
-  damage: 12
-  coordinateName: 0
-  xPos: 0
-  zPos: 0
-  rotation: 45
-  aoeType: 0
-  xSize: 8
-  zSize: 5
-  diameter: 1
---- !u!114 &114855809922118196
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1876607618905926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a66c15b034279649b8fe331452b5a74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeActive: 0
-  delayBeforeNext: 2
-  aoeTimer: 3
-  lingerTime: 0
-  damage: 15
+  delayBeforeNext: 0
+  aoeTimer: 6
+  lingerTime: 3
+  damage: 5
   coordinateName: 0
   xPos: 0
   zPos: 0
   rotation: 0
-  aoeType: 1
-  xSize: 1
-  zSize: 1
-  diameter: 4
+  aoeType: 0
+  xSize: 6
+  zSize: 6
+  diameter: 1

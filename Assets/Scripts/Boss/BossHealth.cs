@@ -14,20 +14,22 @@ public class BossHealth : MonoBehaviour
     private BossAttackController bossAttackController;
     private BossMovementController bossMovementController;
 
-    // Use this for initialization
+    public float startTime;
+
+    [SerializeField]
+    List<float> timeToBeatList;
+
     void Start()
     {
         bossAttackController = GetComponent<BossAttackController>();
         bossMovementController = GetComponent<BossMovementController>();
-        //if (healthbar == null)
-        //{
-        //    healthbar = GameObject.Find("BossGreen").GetComponent<Image>();
-        //}
-        //if (hpText == null)
-        //{
-        //    hpText = GameObject.Find("BossHpText").GetComponent<Text>();
-        //}
         currentHealth = maxHealth;
+        startTime = Time.time;
+        if (timeToBeatList == null)
+        {
+            timeToBeatList = new List<float>();
+        }
+
         if (hpText)
         hpText.text = currentHealth + "/" + maxHealth;
     }
@@ -39,6 +41,25 @@ public class BossHealth : MonoBehaviour
             healthbar.fillAmount = (float)currentHealth / maxHealth;
         if (hpText)
             hpText.text = currentHealth + "/" + maxHealth;
+
+        if (currentHealth <= 0)
+        {
+            RecordData();
+            PlayerRuleBased playerAIScript = bossAttackController.gameInstanceManager.player.GetComponent<PlayerRuleBased>();
+            if (playerAIScript)
+            {
+                playerAIScript.GetBattleData();
+            }
+            else
+            {
+                PlayerMovement tstScript = bossAttackController.gameInstanceManager.player.GetComponent<PlayerMovement>();
+
+                if (!tstScript)
+                    Debug.Log("ERROR script not found");
+                else
+                    tstScript.GetBattleData();
+            }
+        }
     }
 
     public int getCurrentHealth()
@@ -51,5 +72,10 @@ public class BossHealth : MonoBehaviour
         currentHealth = maxHealth;
         bossAttackController.MyReset();
         bossMovementController.Stop();
+    }
+
+    public void RecordData()
+    {
+        timeToBeatList.Add(startTime - Time.time);
     }
 }

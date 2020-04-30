@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isToLeft;
     public bool isFront;
 
+    public int aoeCount;
+    public float startTime;
+    public float bossDeathTime;
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
             Move(v, h);
             Turning(Input.GetKey(KeyCode.Q), Input.GetKey(KeyCode.E));
         }
+        //Collider[] hitColliders = Physics.OverlapBox(transform.position, transform.localScale / 2, transform.rotation, LayerMask.GetMask("Aoe"));
+        //aoeCount = hitColliders.Length;
     }
 
     private void Update()
@@ -36,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
         isToRight = IsBossObjectToTheRight();
         isToLeft = !isToRight;
         isFront = IsBossObjectToTheFront();
+        startTime = Time.time;
+        //Debug.Log(Time.time);
     }
 
     public void Move(float v, float h)
@@ -45,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = (vertical * v + horizontal * h).normalized * movementSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(transform.position + movement);
-        ////playerRigidbody.AddForce(movement - playerRigidbody.velocity, ForceMode.VelocityChange);
     }
 
     public void Turning(bool isTurnLeft, bool isTurnRight)
@@ -81,4 +87,11 @@ public class PlayerMovement : MonoBehaviour
 
         return Vector3.Dot(transform.forward, bossPosition - playerPosition) > 0;
     }
+
+    public void GetBattleData()
+    { 
+        Debug.Log(Time.time - startTime);
+        bossDeathTime = Time.time;
+    }
+
 }

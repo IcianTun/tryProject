@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour {
 
-    public GameObject[] PresettedSubAttack;
-    List<SubAttack> subAttacks;
+    //public string currentActionName;
 
-    public List<IAction> actions;
+    public GameObject[] PresettedActions;
+
+    public List<IAction> actionsList;
 
     //[Header("For Testing")]
     //public GameInstanceManager gameInstanceManager;
 
     public string myString;
-//    [System.NonSerialized]
+    //    [System.NonSerialized]
     public float totalSubAttacksExecuteTime = 0.0f;
 
     /// Have to generate too when using GA
     public float delayAfterAttack = 1.5f;
-
-
-
+    
     ///for testing
     //private void Update()
     //{
@@ -36,9 +35,9 @@ public class Attack : MonoBehaviour {
 
     private void Awake()
     {
-        //Debug.Log("Awake");
+        //Debug.Log("Attack Awake");
         //subAttacks = new List<IAction>();
-        //foreach(GameObject subAttackObject in PresettedSubAttack)
+        //foreach(GameObject subAttackObject in PresettedActions)
         //{
         //    IAction subAttackScript = (IAction)subAttackObject.GetComponent<MonoBehaviour>();
         //    subAttacks.Add(subAttackScript);
@@ -51,39 +50,49 @@ public class Attack : MonoBehaviour {
     public void MyAwake()
     {
         totalSubAttacksExecuteTime = 0.0f;
-        subAttacks = new List<SubAttack>();
-        actions = new List<IAction>();
-        foreach (GameObject subAttackObject in PresettedSubAttack)
+        InstantiateActionsList();
+        //Debug.Log("Attack MyAwake");
+        if (actionsList.Count == 0 && PresettedActions != null)
         {
-            IAction subAttackScript = (IAction) subAttackObject.GetComponent<MonoBehaviour>();
-            //SubAttack a = (SubAttack) subAttackScript;
-            actions.Add(subAttackScript);
-            totalSubAttacksExecuteTime += subAttackScript.GetTotalDelay();
+            //Debug.Log(actionsList.Count);
+            foreach (GameObject subAttackObject in PresettedActions)
+            {
+                IAction action = (IAction)subAttackObject.GetComponent<MonoBehaviour>();
+                actionsList.Add(action);
+                totalSubAttacksExecuteTime += action.GetTotalDelay();
+            }
+        } else
+        {
+            //Debug.Log("else");
+            //Debug.Log(actionsList.Count);
+            foreach (IAction subAttackScript in actionsList)
+            {
+                //Debug.Log(subAttackScript.GetTotalDelay());
+                totalSubAttacksExecuteTime += subAttackScript.GetTotalDelay();
+            }
         }
+
 
     }
 
-    public IEnumerator PerformSubAttacks(GameInstanceManager gameInstanceManager)
+    public IEnumerator PerformSubAttacks(GameInstanceManager gameInstanceManager,BossAttackController bossAttackController)
     {
-        foreach (IAction action in actions)
+        foreach (IAction action in actionsList)
         {
+
             action.Perform(gameInstanceManager);
             yield return new WaitForSeconds(action.GetTotalDelay());
         }
-    }
-/*
-    public  GetIAction()
-    {
-        return new IAction[7];
-    }
-*/
-    public List<SubAttack> GetSubAttacks()
-    {
-        return subAttacks;
+        //Debug.Log("finish an attack : "+ gameObject.name);
+        bossAttackController.nextAttackReady = true;
+        yield return null;
     }
 
-    public void SetAttackList(List<SubAttack> newSubAttack)
+    public void InstantiateActionsList()
     {
-        subAttacks = newSubAttack;
+        if (actionsList == null)
+        {
+            actionsList = new List<IAction>();
+        }
     }
 }
