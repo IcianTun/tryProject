@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SubAttack : MonoBehaviour,IAction {
+public abstract class SubAttack : IAction {
 
     /// <summary>
     ///   
@@ -51,17 +51,14 @@ public abstract class SubAttack : MonoBehaviour,IAction {
 
     // --------------------------------------------------------------------------
 
-    virtual public void Perform(GameInstanceManager gameInstance)
+    public abstract override void Perform(GameInstanceManager gameInstance);
+
+    public override void MyAwake()
     {
 
     }
 
-    virtual public void MyAwake()
-    {
-
-    }
-
-    public float GetTotalDelay()
+    public override float GetTotalDelay()
     {
         return delayBeforeActive + delayBeforeNext;
     }
