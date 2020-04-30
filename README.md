@@ -2,14 +2,15 @@
 
 Boss
 
-	- Attacks1
+	- Attack1
 		- Action [SubAttack or Move or Blank]
 		- Action [SubAttack or Move or Blank]
 		- Action [SubAttack or Move or Blank]
-	- Attacks2
 		- Action [SubAttack or Move or Blank]
 		- Action [SubAttack or Move or Blank]
 		- Action [SubAttack or Move or Blank]
+	- Attack2
+	- Attack3 4 5
 
 
 SubAttacks Params
