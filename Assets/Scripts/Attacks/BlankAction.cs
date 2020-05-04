@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlankAction : MonoBehaviour, IAction
+public class BlankAction : IAction
 {
 
-    public float GetTotalDelay()
+    public override float GetTotalDelay()
     {
         return 0;
     }
 
-    public void MyAwake()
+    public override void MyAwake()
     {
 
     }
 
-    virtual public void Perform(GameInstanceManager gameInstance)
+    public override void Perform(GameInstanceManager gameInstance)
     {
 
     }

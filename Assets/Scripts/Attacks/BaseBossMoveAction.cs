@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BaseBossMoveAction : MonoBehaviour,IAction {
+public class BaseBossMoveAction : IAction {
 
     public CoordinateName coordinateName;
 
@@ -16,7 +16,7 @@ public class BaseBossMoveAction : MonoBehaviour,IAction {
     public float timeToMove = 1f;
     public float delayAfter;
 
-    virtual public void Perform(GameInstanceManager gameInstance)
+    public override void Perform(GameInstanceManager gameInstance)
     {
         BossMovementController bossMovementScript = gameInstance.boss.GetComponent<BossMovementController>();
         Vector3 targetPos = gameInstance.transform.position;
@@ -29,12 +29,12 @@ public class BaseBossMoveAction : MonoBehaviour,IAction {
         bossMovementScript.MoveToPosition(targetPos,timeToMove, delaybefore);
     }
 
-    virtual public void MyAwake()
+    public override void MyAwake()
     {
 
     }
 
-    public float GetTotalDelay()
+    public override float GetTotalDelay()
     {
         return delaybefore + timeToMove + delayAfter;
     }

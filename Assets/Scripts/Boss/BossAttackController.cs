@@ -11,7 +11,7 @@ public class BossAttackController : MonoBehaviour {
     public List<Attack> attackList;
 
     public GameInstanceManager gameInstanceManager;
-    public float delayStart = 5.0f;
+    public float delayStart = 1.0f;
     private float myTime = 0.0f;
     //private float waitDelayForNextAttack;
     public bool nextAttackReady = false;
@@ -98,9 +98,10 @@ public class BossAttackController : MonoBehaviour {
 
     public void MyReset()
     {
-         delayStart = 5.0f;
-         myTime = 0.0f;
-         //waitDelayForNextAttack = delayStart;
-         StopAllCoroutines();
+        delayStart = 1.0f;
+        myTime = 0.0f;
+        start = false;
+        //waitDelayForNextAttack = delayStart;
+        StopAllCoroutines();
     }
 }

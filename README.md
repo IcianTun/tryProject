@@ -1,5 +1,32 @@
 2019
 
+the convergence is satisfied when the absolute value of fitness is constant across generation
+
+maybe add avg_attack interval to fitness too,
+
+// 	case 1 : player position is safe (no touch)
+		move toward safe position of INNER player then filter to closest to boss
+	
+	case 2 : player pos is not safe
+		move toward safe position closest to player (if more than 1 , choose nearest to boss)
+
+		
+player ai not calculating rotation.
+
+
+bool isCrossing = true;
+
+					 10 11 
+0 1 2 3 4 5 6   7 8 9 A B 
+A A B D C 0 0 | C B B A D 
+0 A A B 0 D C | A B C A 0 
+-------|   |-------|            ( 3)
+
+	crossover point = 4, 6, 9 
+0-Point1 , Point1-Point2 , Point2-Point3(Or no if it's null)
+0-3	, 6-9
+	
+--------------------------------------------------------------------
 Boss
 
 	- Attack1

@@ -282,7 +282,7 @@ public class PlayerAgent : Agent {
             + gameInstance.transform.position;
 
         boss.transform.position = new Vector3(0, 2, 0) + gameInstance.transform.position;
-        bossHealth.ResetHealth();
+        bossHealth.ResetHealthAndAttacks();
         playerHealth.ResetHealth();
         gameInstanceManager.DestroyAllAoe();
 

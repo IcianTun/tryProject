@@ -7,18 +7,17 @@ public class PlayerMovement : MonoBehaviour
     public bool enableManualControl = true;
 
     [Header("For Testing")]
-    public float movementSpeed = 5f;
-    public float rotationSpeed = 90f;
+    public float movementSpeed = 6.5f;
+    public float rotationSpeed = 150f;
     Rigidbody playerRigidbody;
 
-    public GameObject boss;
-    public bool isToRight;
-    public bool isToLeft;
-    public bool isFront;
+    //public GameObject boss;
+    //public bool isToRight;
+    //public bool isToLeft;
+    //public bool isFront;
 
-    public int aoeCount;
-    public float startTime;
-    public float bossDeathTime;
+    //public int aoeCount;
+
     void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
@@ -36,14 +35,13 @@ public class PlayerMovement : MonoBehaviour
         //aoeCount = hitColliders.Length;
     }
 
-    private void Update()
-    {
-        isToRight = IsBossObjectToTheRight();
-        isToLeft = !isToRight;
-        isFront = IsBossObjectToTheFront();
-        startTime = Time.time;
+    //private void Update()
+    //{
+        //isToRight = IsBossObjectToTheRight();
+        //isToLeft = !isToRight;
+        //isFront = IsBossObjectToTheFront();
         //Debug.Log(Time.time);
-    }
+    //}
 
     public void Move(float v, float h)
     {
@@ -68,30 +66,24 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool IsBossObjectToTheRight()
-    {
-        Vector3 bossPosition = boss.transform.position;
-        bossPosition.y = 0;
-        Vector3 playerPosition = transform.position;
-        playerPosition.y = 0;
+    //bool IsBossObjectToTheRight()
+    //{
+    //    Vector3 bossPosition = boss.transform.position;
+    //    bossPosition.y = 0;
+    //    Vector3 playerPosition = transform.position;
+    //    playerPosition.y = 0;
 
-        return Vector3.Dot(transform.right, bossPosition - playerPosition) > 0;
-    }
+    //    return Vector3.Dot(transform.right, bossPosition - playerPosition) > 0;
+    //}
 
-    bool IsBossObjectToTheFront()
-    {
-        Vector3 bossPosition = boss.transform.position;
-        bossPosition.y = 0;
-        Vector3 playerPosition = transform.position;
-        playerPosition.y = 0;
+    //bool IsBossObjectToTheFront()
+    //{
+    //    Vector3 bossPosition = boss.transform.position;
+    //    bossPosition.y = 0;
+    //    Vector3 playerPosition = transform.position;
+    //    playerPosition.y = 0;
 
-        return Vector3.Dot(transform.forward, bossPosition - playerPosition) > 0;
-    }
-
-    public void GetBattleData()
-    { 
-        Debug.Log(Time.time - startTime);
-        bossDeathTime = Time.time;
-    }
-
+    //    return Vector3.Dot(transform.forward, bossPosition - playerPosition) > 0;
+    //}
+    
 }

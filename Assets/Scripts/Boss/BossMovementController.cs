@@ -6,6 +6,12 @@ public class BossMovementController : MonoBehaviour {
 
     public Transform gameInstanceTransform;
 
+    public void Start()
+    {
+        if(!gameInstanceTransform)
+        gameInstanceTransform = GetComponent<BossAttackController>().gameInstanceManager.transform;
+    }
+
 
     public void MoveToPosition(Vector3 targetPosition, float timeToMove, float delay)
     {
