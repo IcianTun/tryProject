@@ -185,7 +185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1115846844940174
 GameObject:
   m_ObjectHideFlags: 1
@@ -648,6 +648,7 @@ GameObject:
   - component: {fileID: 114716667194802660}
   - component: {fileID: 114245574551713358}
   - component: {fileID: 114248877979824080}
+  - component: {fileID: 114551232207993318}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -1270,7 +1271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1809253602106406
 GameObject:
   m_ObjectHideFlags: 1
@@ -4237,15 +4238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableManualControl: 1
-  movementSpeed: 5
-  rotationSpeed: 90
-  boss: {fileID: 1396005791831244}
-  isToRight: 0
-  isToLeft: 0
-  isFront: 0
-  aoeCount: 0
-  startTime: 0
-  bossDeathTime: 0
+  movementSpeed: 6.5
+  rotationSpeed: 150
 --- !u!114 &114178717360966608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4421,8 +4415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c745bf9f65bd6c84da42f815c09a7b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ga: {fileID: 0}
   player: {fileID: 1135208880990688}
-  boss: {fileID: 1396005791831244}
+  boss: {fileID: 0}
+  startTime: 0
 --- !u!114 &114245574551713358
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4439,7 +4435,7 @@ MonoBehaviour:
   attackList:
   - {fileID: 114871041026502198, guid: c9b127e382cee6c4bb99329b4bde5c0c, type: 2}
   gameInstanceManager: {fileID: 114233119814360890}
-  delayStart: 5
+  delayStart: 1
   nextAttackReady: 0
 --- !u!114 &114246712218069306
 MonoBehaviour:
@@ -4544,7 +4540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6049b41b13009d343a804a78a2d80b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 5
   isRemovedAfterHit: 0
   isPlayer: 1
 --- !u!114 &114317362970780848
@@ -4611,9 +4607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 114071472484944278}
   hpText: {fileID: 0}
-  maxHealth: 100
   currentHealth: 0
-  agent: {fileID: 0}
+  gameInstanceMngr: {fileID: 0}
 --- !u!114 &114413079462661490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4751,9 +4746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 114466792346662982}
   hpText: {fileID: 0}
-  maxHealth: 100
   currentHealth: 0
-  agent: {fileID: 0}
+  gameInstanceMngr: {fileID: 114233119814360890}
 --- !u!114 &114490408881569070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4819,6 +4813,18 @@ MonoBehaviour:
     isOutOfBoundary: 0
   aoeTouchingCount: 0
   isOutOfBoundary: 0
+--- !u!114 &114551232207993318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1396005791831244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1303a45336ae2e44da407df7f560aac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: []
 --- !u!114 &114588566456924914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5011,8 +5017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbar: {fileID: 114231066755779372}
   hpText: {fileID: 0}
-  startTime: 0
-  timeToBeatList: []
 --- !u!114 &114731844356858068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5096,7 +5100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6049b41b13009d343a804a78a2d80b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 5
   isRemovedAfterHit: 0
   isPlayer: 1
 --- !u!114 &114796805117657146
@@ -5147,15 +5151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableManualControl: 1
-  movementSpeed: 4
-  rotationSpeed: 90
-  boss: {fileID: 1396005791831244}
-  isToRight: 0
-  isToLeft: 0
-  isFront: 0
-  aoeCount: 0
-  startTime: 0
-  bossDeathTime: 0
+  movementSpeed: 8
+  rotationSpeed: 150
 --- !u!114 &114807557300306642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5252,60 +5249,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameInstanceManager: {fileID: 114233119814360890}
+  boss: {fileID: 0}
+  bossAttackUptime: 0
   aoeTouchingCount: 0
   shot: {fileID: 1531581844037474, guid: a3c80078b5f883049aab5b3715ecc7d7, type: 2}
   shotSpawn:
   - {fileID: 4093377074524082}
   - {fileID: 4479658752120558}
-  detectorList:
-  - {fileID: 114996394661231762}
-  - {fileID: 114873749415188318}
-  - {fileID: 114203371978990254}
-  - {fileID: 114875843753460212}
-  - {fileID: 114227970227385108}
-  - {fileID: 114469010761389044}
-  - {fileID: 114702864949995458}
-  - {fileID: 114911953626383994}
-  - {fileID: 114964651439868160}
-  - {fileID: 114200500315484838}
-  - {fileID: 114200640062056570}
-  - {fileID: 114121072930108084}
-  - {fileID: 114311728843870770}
-  - {fileID: 114715726138973222}
-  - {fileID: 114621162404506154}
-  - {fileID: 114796805117657146}
-  - {fileID: 114498909109182098}
-  - {fileID: 114052663375903134}
-  - {fileID: 114961611428234052}
-  - {fileID: 114365295122465886}
-  - {fileID: 114490408881569070}
-  - {fileID: 114699080628998180}
-  - {fileID: 114626794860977858}
-  - {fileID: 114178717360966608}
-  - {fileID: 114627312360775946}
-  - {fileID: 114413079462661490}
-  - {fileID: 114317362970780848}
-  - {fileID: 114043445171186120}
-  - {fileID: 114513167209724386}
-  - {fileID: 114847992428872694}
-  - {fileID: 114195896911317100}
-  - {fileID: 114867597105158730}
-  - {fileID: 114800936574275916}
-  - {fileID: 114446932343182480}
-  - {fileID: 114228075798125984}
-  - {fileID: 114846843038170860}
-  - {fileID: 114807557300306642}
-  - {fileID: 114874469043552704}
-  - {fileID: 114844548187896452}
-  - {fileID: 114764445479440372}
   distance: 0
   angle: 0
   moveFront: 0
   moveRight: 0
   targetPosNow: {x: 0, y: 0, z: 0}
-  distancetst: 0
-  leastOverlapData: []
-  possibileTargetPosTst: []
+  tstOverlapList: []
+  tstVector3List: []
 --- !u!114 &114846843038170860
 MonoBehaviour:
   m_ObjectHideFlags: 1

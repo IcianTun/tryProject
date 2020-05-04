@@ -13,42 +13,20 @@ public class Generator : MonoBehaviour {
     public SubAttackAtCoordinate tstSubattack;
 
     GameInstanceManager gameInstanceManager;
-    GameObject myGeneratedBoss;
+    //GameObject myGeneratedBoss;
 
     private void Awake()
     {
         gameInstanceManager = GetComponent<GameInstanceManager>();
     }
+    
 
-    private void Start()
-    {
-        //GenerateABoss();
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            GenerateABoss();
-        }
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            Debug.Log(System.DateTime.Now.ToString("HH:mm:ss_dd-MM-yyyy"));
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            string localPath = "Assets/Boss/" + myGeneratedBoss.name + System.DateTime.Now.ToString("_HH:mm:ss_dd-MM-yyyy") + ".prefab";
-            localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
-            PrefabUtility.CreatePrefab(localPath, myGeneratedBoss);
-        }
-
-    }
-
-    public void GenerateABoss()
+    public GameObject GenerateABoss(int markNumber)
     {
         GameObject generatedBoss = Instantiate(bossTemplate, transform);
+        gameInstanceManager.AssignBossToThisInstance(generatedBoss);
         BossAttackController bossAttackCon = generatedBoss.GetComponent<BossAttackController>();
-        bossAttackCon.gameInstanceManager = GetComponent<GameInstanceManager>();
+        //myGeneratedBoss = generatedBoss;
 
         for(int i = 0; i < ATTACK_SIZE; i++)
         {
@@ -57,9 +35,9 @@ public class Generator : MonoBehaviour {
             anAttackGameObject.transform.SetParent(generatedBoss.transform);
             anAttackGameObject.name = "Attack " + i;
         }
-        gameInstanceManager.boss = generatedBoss;
-        generatedBoss.GetComponent<BossMovementController>().gameInstanceTransform = transform;
-        myGeneratedBoss = generatedBoss;
+        generatedBoss.name = "Initial " + markNumber;
+        // set active false is in GA.cs
+        return generatedBoss;
     }
 
     GameObject GenerateAnAttack()
@@ -78,7 +56,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateRandomAction()
+    public static GameObject GenerateRandomAction()
     {
         int type = Random.Range(0, 3);
         switch (type)
@@ -90,12 +68,12 @@ public class Generator : MonoBehaviour {
             case 2:
                 return GenerateBlankAction();
             default:
-                Debug.Log("Impossible");
+                Debug.Log("Impossible GENERATE ACTION!");
                 return null;
         }
     }
 
-    GameObject GenerateRandomAttack()
+    static GameObject GenerateRandomAttack()
     {
         int type = Random.Range(0, 4);
         switch (type)
@@ -109,12 +87,12 @@ public class Generator : MonoBehaviour {
             case 3:
                 return GenerateSubAttackTowardPlayer();
             default:
-                Debug.Log("Impossible");
+                Debug.Log("Impossible GENERATE ATTACK!!");
                 return null;
         }
     }
 
-    GameObject GenerateRandomMove()
+    static GameObject GenerateRandomMove()
     {
         int type = Random.Range(0, 2);
         switch (type)
@@ -124,12 +102,12 @@ public class Generator : MonoBehaviour {
             case 1:
                 return GenerateMoveToward();
             default:
-                Debug.Log("Impossible");
+                Debug.Log("Impossible GENERATE RANDOM MOVE");
                 return null;
         }
     }
 
-    GameObject GenerateSubAttackAtBoss()
+    static GameObject GenerateSubAttackAtBoss()
     {
         GameObject empty = new GameObject();
         SubAttackAtBoss tstSubattack = empty.AddComponent<SubAttackAtBoss>();
@@ -139,7 +117,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateSubAttackAtCoordinate()
+    static GameObject GenerateSubAttackAtCoordinate()
     {
         GameObject empty = new GameObject();
         SubAttackAtCoordinate tstSubattack = empty.AddComponent<SubAttackAtCoordinate>();
@@ -161,7 +139,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateSubAttackAtPlayer()
+    static GameObject GenerateSubAttackAtPlayer()
     {
         GameObject empty = new GameObject();
         SubAttackAtPlayer tstSubattack = empty.AddComponent<SubAttackAtPlayer>();
@@ -171,7 +149,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateSubAttackTowardPlayer()
+    static GameObject GenerateSubAttackTowardPlayer()
     {
         GameObject empty = new GameObject();
         SubAttackTowardPlayer tstSubattack = empty.AddComponent<SubAttackTowardPlayer>();
@@ -185,7 +163,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateBasicMove()
+    static GameObject GenerateBasicMove()
     {
         GameObject empty = new GameObject();
         BaseBossMoveAction tstMove = empty.AddComponent<BaseBossMoveAction>();
@@ -206,7 +184,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateMoveToward()
+    static GameObject GenerateMoveToward()
     {
         GameObject empty = new GameObject();
         MoveTowardPlayer tstMove = empty.AddComponent<MoveTowardPlayer>();
@@ -217,7 +195,7 @@ public class Generator : MonoBehaviour {
         return empty;
     }
 
-    GameObject GenerateBlankAction()
+    static GameObject GenerateBlankAction()
     {
         GameObject empty = new GameObject();
         empty.AddComponent<BlankAction>();
@@ -226,15 +204,15 @@ public class Generator : MonoBehaviour {
     }
 
 
-    private void RandomBasicParams(SubAttack subAttack)
+    static private void RandomBasicParams(SubAttack subAttack)
     {
         subAttack.delayBeforeActive = Random.Range(0f, 2f);
         subAttack.delayBeforeNext = Random.Range(0f, 2f);
         subAttack.aoeTimer = Random.Range(2f, 4f);
-        subAttack.damage = Random.Range(5, 25);
+        subAttack.damage = Random.Range(5, 20);
     }
 
-    private void RandomBasicParams(BaseBossMoveAction moveAction)
+    static private void RandomBasicParams(BaseBossMoveAction moveAction)
     {
         moveAction.delaybefore = Random.Range(0f, 2f);
         moveAction.timeToMove = Random.Range(0f, 2f);
@@ -242,7 +220,7 @@ public class Generator : MonoBehaviour {
 
     }
 
-    private void RandomAoeTypeParams(SubAttack subattack)
+    private static void RandomAoeTypeParams(SubAttack subattack)
     {
         subattack.aoeType = (AoeType)Random.Range(0, System.Enum.GetValues(typeof(AoeType)).Length);
         if (subattack.aoeType == AoeType.Square)
@@ -255,14 +233,14 @@ public class Generator : MonoBehaviour {
         }
     }
 
-    private void RandomSquareAoeParams(SubAttack subattack)
+    private static  void RandomSquareAoeParams(SubAttack subattack)
     {
         subattack.xSize = Random.Range(4f, 25f);
         subattack.zSize = Random.Range(4f, 25f);
         subattack.rotation = Random.Range(0, 180f);
     }
 
-    private void RandomCircleAoeParams(SubAttack subattack)
+    private static void RandomCircleAoeParams(SubAttack subattack)
     {
         subattack.diameter = Random.Range(4f, 25f);
     }

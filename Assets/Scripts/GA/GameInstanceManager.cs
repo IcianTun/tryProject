@@ -1,48 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class GameInstanceManager : MonoBehaviour {
 
-    //public GameObject bossPrefab1;
-    //public GameObject bossPrefab2;
-    //public GameObject[] bossPrefabs;
-
-    //public GameObject bossTemplate;
-
+    public GA ga;
     public GameObject player;
     public GameObject boss;
-	
-	//// Update is called once per frame
-	//void Update () {
- //       if(Input.GetKeyDown(KeyCode.G))
- //       {
- //           GenerateBoss();
- //       }
 
- //   }
+    public float startTime;
 
-    //void tryMixBoss() {
-    //    GameObject bossObject = Instantiate(bossPrefab1,new Vector3(transform.position.x, 2, transform.position.z),transform.rotation);
-    //    BossAttackController bossScript1 = bossObject.GetComponent<BossAttackController>();
-    //    bossScript1.MyAwake();
-    //    BossAttackController bossScript2 = bossPrefab2.GetComponent<BossAttackController>();
-    //    bossScript2.MyAwake();
-    //    Attack attack2 = bossScript2.getAttackList()[0];
-    //    List<Attack> attackList = bossScript1.getAttackList();
-    //    attackList.Add(attack2);
-    //    bossScript1.setAttackList(attackList);
-    //    Debug.Log(bossObject.GetComponent<BossAttackController>().getAttackList().Count);
-    //}
-
-    //public GameObject GenerateBoss()
-    //{
-    //    GameObject randomedBoss = bossPrefabs[Random.Range(0,bossPrefabs.Length)];
-    //    GameObject newBoss = Instantiate(randomedBoss, new Vector3(transform.position.x, 2, transform.position.z), transform.rotation);
-    //    newBoss.transform.parent = gameObject.transform;
-    //    newBoss.GetComponent<BossAttackController>().setGameInstanceManager(this);
-    //    return newBoss;
-    //}
+    public void StartFight()
+    {
+        boss.SetActive(true);
+        player.SetActive(true);
+        startTime = Time.time;
+    }
 
     public void DestroyAllAoe()
     {
@@ -52,4 +26,53 @@ public class GameInstanceManager : MonoBehaviour {
             Destroy(child.gameObject);
         }
     }
+
+    public void RecordData()
+    {
+        DestroyAllAoe();
+        float timeUsed = Time.time - startTime;
+        BossStatisticData bossStatsData = new BossStatisticData
+        {
+            timeUsed = Time.time - startTime,
+            playerHPLeft = Mathf.Max(0,player.GetComponent<PlayerHealth>().currentHealth),
+            attackUptimePercentages = player.GetComponent<PlayerRuleBased>().bossAttackUptime / timeUsed
+        };
+        BossStatistic bossStatistic = boss.GetComponent<BossStatistic>();
+        bossStatistic.data.Clear();
+        bossStatistic.data.Add(bossStatsData);
+        player.SetActive(false);
+        boss.SetActive(false);
+        ga.AnInstanceEnd();
+    }
+
+    public void AssignBossToThisInstance(GameObject newBoss)
+    {
+        boss = newBoss;
+        newBoss.GetComponent<BossAttackController>().gameInstanceManager = GetComponent<GameInstanceManager>();
+        newBoss.GetComponent<BossMovementController>().gameInstanceTransform = transform;
+        newBoss.transform.parent = this.transform;
+        player.GetComponent<PlayerRuleBased>().boss = newBoss;
+        player.GetComponent<PlayerHealth>().gameInstanceMngr = this;
+    }
+
+    public void SaveBoss()
+    {
+        // System.DateTime.Now.ToString("_HH:mm:ss_dd-MM-yyyy") + 
+        string localPath = "Assets/Boss/" + boss.name + ".prefab";
+        localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+        PrefabUtility.CreatePrefab(localPath, boss);
+    }
+
+    public void Resetkub()
+    {
+        player.GetComponent<PlayerHealth>().ResetHealth();
+        player.GetComponent<PlayerRuleBased>().bossAttackUptime = 0;
+        boss.GetComponent<BossHealth>().ResetHealthAndAttacks();
+
+        player.transform.rotation = Quaternion.identity;
+        player.transform.position = new Vector3(0, 1, -5)
+            + this.transform.position;
+        boss.transform.position = new Vector3(0, 2, 0) + this.transform.position;
+    }
+
 }

@@ -14,10 +14,7 @@ public class Attack : MonoBehaviour {
     //public GameInstanceManager gameInstanceManager;
 
     public string myString;
-    //    [System.NonSerialized]
-    public float totalSubAttacksExecuteTime = 0.0f;
-
-    /// Have to generate too when using GA
+    
     public float delayAfterAttack = 1.5f;
     
     ///for testing
@@ -49,7 +46,6 @@ public class Attack : MonoBehaviour {
     
     public void MyAwake()
     {
-        totalSubAttacksExecuteTime = 0.0f;
         InstantiateActionsList();
         //Debug.Log("Attack MyAwake");
         if (actionsList.Count == 0 && PresettedActions != null)
@@ -59,18 +55,8 @@ public class Attack : MonoBehaviour {
             {
                 IAction action = (IAction)subAttackObject.GetComponent<MonoBehaviour>();
                 actionsList.Add(action);
-                totalSubAttacksExecuteTime += action.GetTotalDelay();
             }
-        } else
-        {
-            //Debug.Log("else");
-            //Debug.Log(actionsList.Count);
-            foreach (IAction subAttackScript in actionsList)
-            {
-                //Debug.Log(subAttackScript.GetTotalDelay());
-                totalSubAttacksExecuteTime += subAttackScript.GetTotalDelay();
-            }
-        }
+        } 
 
 
     }
@@ -79,7 +65,6 @@ public class Attack : MonoBehaviour {
     {
         foreach (IAction action in actionsList)
         {
-
             action.Perform(gameInstanceManager);
             yield return new WaitForSeconds(action.GetTotalDelay());
         }

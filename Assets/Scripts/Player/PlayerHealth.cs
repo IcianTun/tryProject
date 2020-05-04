@@ -8,22 +8,18 @@ public class PlayerHealth : MonoBehaviour {
     public Image healthbar;
     public Text hpText;
 
-    public int maxHealth = 100;
+    public const int maxHealth = 100;
     public int currentHealth;
-    public PlayerAgent agent;
+
+    [Header("GA things")]
+    public GameInstanceManager gameInstanceMngr;
 
     // Use this for initialization
     void Start () {
-        agent = GetComponent<PlayerAgent>();
         currentHealth = maxHealth;
         if (hpText)
         hpText.text = currentHealth + "/" + maxHealth;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
     
     public void takeDamage(int damagePoint)
     {
@@ -32,8 +28,12 @@ public class PlayerHealth : MonoBehaviour {
         hpText.text = currentHealth + "/" + maxHealth;
         if(healthbar)
         healthbar.fillAmount = (float)currentHealth / maxHealth;
-        if (agent)
-            agent.AddReward(-damagePoint / 20f);
+
+        if(currentHealth <= 0)
+        {
+            gameInstanceMngr.RecordData();
+        }
+
     }
 
     public void ResetHealth()
@@ -41,5 +41,6 @@ public class PlayerHealth : MonoBehaviour {
         currentHealth = maxHealth;
         if (healthbar)
             healthbar.fillAmount = (float)currentHealth / maxHealth;
+
     }
 }
