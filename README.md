@@ -4,7 +4,7 @@ My senior project.
 
 Most of content below are notes.
 
-
+<br /><br />
 
 the convergence is satisfied when the absolute value of fitness is constant across generation
 
