@@ -18,7 +18,8 @@ Player AI
 	case 2 : player pos is not safe
 		move toward safe position closest to player (if more than 1 , choose nearest to boss)
 
-
+--------------------------------------------------------------------
+Crossover
 
 					 10 11 
 					 
