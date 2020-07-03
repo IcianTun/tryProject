@@ -30,9 +30,9 @@ A A B D C 0 0 | C B B A D
 
 -------|   |-------|            ( 3)
 
-	crossover point = 4, 6, 9 
+	3 crossover point = 4, 6, 9 
 	
-0-Point1 , Point1-Point2 , Point2-Point3(Or no if it's null)
+0-Point1 , Point1-Point2 , Point2-Point3
 
 0-3	, 6-9
 	
