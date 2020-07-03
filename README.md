@@ -1,10 +1,14 @@
-2019
+Automatic Boss Enemy Generation in Game (2019)
+
+My senior project.
+
+Most of content below are notes.
 
 the convergence is satisfied when the absolute value of fitness is constant across generation
 
 maybe add avg_attack interval to fitness too,
 
-// 	case 1 : player position is safe (no touch)
+ 	case 1 : player position is safe (no touch)
 		move toward safe position of INNER player then filter to closest to boss
 	
 	case 2 : player pos is not safe
