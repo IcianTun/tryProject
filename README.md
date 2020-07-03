@@ -10,9 +10,7 @@ Most of content below are notes.
 
 <br /><br />
 
-the convergence is satisfied when the absolute value of fitness is constant across generation
-
-maybe add avg_attack interval to fitness too,
+Player AI
 
  	case 1 : player position is safe (no touch)
 		move toward safe position of INNER player then filter to closest to boss
@@ -20,8 +18,7 @@ maybe add avg_attack interval to fitness too,
 	case 2 : player pos is not safe
 		move toward safe position closest to player (if more than 1 , choose nearest to boss)
 
-		
-player ai not calculating rotation..
+
 
 					 10 11 
 					 
@@ -101,3 +98,10 @@ Coordinate
 	
 	Inner NESW , NW NE SE SW
 	Outer NESW , NW NE EN ES SE SW WS WN , Corner NE NW SE SW
+	
+Additional Notes to myself	
+	
+the convergence is satisfied when the absolute value of fitness is constant across generation
+
+maybe add avg_attack interval to fitness too,
+
