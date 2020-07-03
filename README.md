@@ -4,6 +4,8 @@ My senior project.
 
 Most of content below are notes.
 
+
+
 the convergence is satisfied when the absolute value of fitness is constant across generation
 
 maybe add avg_attack interval to fitness too,
