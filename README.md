@@ -1,6 +1,6 @@
 Automatic Boss Enemy Generation in Game (2019)
 
-My senior project.
+My senior project. It is embarassing somehow but I think I should drop the final report here as well
 
 Most of content below are notes.
 
