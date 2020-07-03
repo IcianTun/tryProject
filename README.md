@@ -1,6 +1,10 @@
 Automatic Boss Enemy Generation in Game (2019)
 
-My senior project. It is embarassing somehow but I think I should drop the final report [here](https://iciantun.github.io/SeniorProject/SeniorProj_FinalReport.pdf) as well
+My senior project. 
+
+I think this project is somehow disappointing(to me, atleast) so it embarassing somehow to show it. I heard that the department would upload my final report somewhere(where?) for the purpose that anyone could look up. So me uploading and linking it [here](https://iciantun.github.io/SeniorProject/SeniorProj_FinalReport.pdf) too is ok, I think. As well as my [demo presentation](https://docs.google.com/presentation/d/1-LpOAVzhKmmsnFjFf8VxrmKYhA4AIPKMitujpmUnWXk/edit?usp=sharing), it has demo video of a result boss and gameplay as well.
+
+Well, if anyone take a look and get some good idea or inspiration from this project, I would be very proud of you. LOL
 
 Most of content below are notes.
 
@@ -17,10 +21,7 @@ maybe add avg_attack interval to fitness too,
 		move toward safe position closest to player (if more than 1 , choose nearest to boss)
 
 		
-player ai not calculating rotation.
-
-
-bool isCrossing = true;
+player ai not calculating rotation..
 
 					 10 11 
 					 
