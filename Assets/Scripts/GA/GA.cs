@@ -26,34 +26,36 @@ public class GA : MonoBehaviour {
 
     public List<GameInstanceManager> gameInstanceManagerList;
 
+    public List<GameObject> bossToLoad;
+
     const int CROSSOVER_POINT_AMOUNT = 3;
 
     public static int endCount = 0;
     public int public_endCount;
-    public static int generation_Number = 1;
+    public int generation_Number = 1;
     public static int mark_number = 0;
 
     public List<FloatListWrapper> generationsFitness;
     public List<BossDataWrapper> generationsData;
     public List<float> generationsAVG;
     public List<float> generationsSD;
-    public const float acceptable_avg_diff = 0.00001f;
-    public const float acceptable_SD_difference = 0.2f;
+    public float acceptable_avg_diff = 0.0005f;
+    public const float acceptable_SD_difference = 0.2f; // not used...
 
     public const float survive_rate = 0.5f;
 
     public const float expect_timeUsed_toBeat = 120;
     public const float expect_attackUptimePercentages = 0.4f;
-    public const int expect_playerHP_left = 80;
+    public const int expect_playerHP_left = 30; 
 
     public const float weight_timeUsed = 4;
-    public const float weight_attackUptimePercent = 5;
+    public const float weight_attackUptimePercent = 5; ///
     public const float weight_playerHP_left = 1;
     public const float weight_isBeaten = 3;
 
     public const float sum_weight = weight_timeUsed + weight_attackUptimePercent + weight_playerHP_left + weight_isBeaten;
 
-    public const float mutation_rate = 0.04f;
+    public const float mutation_rate = 0.06f;
 
     public bool next = false;
     public bool auto = true;
@@ -74,25 +76,101 @@ public class GA : MonoBehaviour {
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GameObject loadedBoss = Instantiate(bossToLoad[0]);
+            Destroy(gameInstanceManagerList[0].boss);
+            gameInstanceManagerList[0].AssignBossToThisInstance(loadedBoss);
+            gameInstanceManagerList[0].boss.SetActive(true);
+            gameInstanceManagerList[0].boss.GetComponent<BossHealth>().hpText = gameInstanceManagerList[0].bossHPText;
+            gameInstanceManagerList[0].Resetkub();
+            gameInstanceManagerList[0].currentBossNumber.text = "Current Boss: 1";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GameObject loadedBoss = Instantiate(bossToLoad[1]);
+            Destroy(gameInstanceManagerList[0].boss);
+            gameInstanceManagerList[0].AssignBossToThisInstance(loadedBoss);
+            gameInstanceManagerList[0].boss.SetActive(true);
+            gameInstanceManagerList[0].boss.GetComponent<BossHealth>().hpText = gameInstanceManagerList[0].bossHPText;
+            gameInstanceManagerList[0].Resetkub();
+            gameInstanceManagerList[0].currentBossNumber.text = "Current Boss: 2";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GameObject loadedBoss = Instantiate(bossToLoad[2]);
+            Destroy(gameInstanceManagerList[0].boss);
+            gameInstanceManagerList[0].AssignBossToThisInstance(loadedBoss);
+            gameInstanceManagerList[0].boss.SetActive(true);
+            gameInstanceManagerList[0].boss.GetComponent<BossHealth>().hpText = gameInstanceManagerList[0].bossHPText;
+            gameInstanceManagerList[0].Resetkub();
+            gameInstanceManagerList[0].currentBossNumber.text = "Current Boss: 3";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            GameObject loadedBoss = Instantiate(bossToLoad[3]);
+            Destroy(gameInstanceManagerList[0].boss);
+            gameInstanceManagerList[0].AssignBossToThisInstance(loadedBoss);
+            gameInstanceManagerList[0].boss.SetActive(true);
+            gameInstanceManagerList[0].boss.GetComponent<BossHealth>().hpText = gameInstanceManagerList[0].bossHPText;
+            gameInstanceManagerList[0].Resetkub();
+            gameInstanceManagerList[0].currentBossNumber.text = "Current Boss: 4";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            GameObject loadedBoss = Instantiate(bossToLoad[4]);
+            Destroy(gameInstanceManagerList[0].boss);
+            gameInstanceManagerList[0].AssignBossToThisInstance(loadedBoss);
+            gameInstanceManagerList[0].boss.SetActive(true);
+            gameInstanceManagerList[0].boss.GetComponent<BossHealth>().hpText = gameInstanceManagerList[0].bossHPText;
+            gameInstanceManagerList[0].Resetkub();
+            gameInstanceManagerList[0].currentBossNumber.text = "Current Boss: 5";
+        }
+
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             Populate();
         }
+        if (Input.GetKeyDown(KeyCode.Semicolon))
+        {
+            SelectionPhase();
+        }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            // LOAD
+            bossToLoad = bossToLoad.OrderBy(
+                boss => Fitness(boss.GetComponent<BossStatistic>().data[0])
+            ).Reverse().ToList();
+            int i = 0;
             foreach (GameInstanceManager gameinstanceManager in gameInstanceManagerList)
             {
-                gameinstanceManager.AssignBossToThisInstance(gameinstanceManager.boss);
-                gameinstanceManager.boss.SetActive(false);
-                gameinstanceManager.player.SetActive(false);
+                if (i < bossToLoad.Count)
+                {
+                    GameObject loadedBoss = Instantiate(bossToLoad[i]);
+                    gameinstanceManager.AssignBossToThisInstance(loadedBoss);
+                    gameinstanceManager.boss.SetActive(false);
+                    gameinstanceManager.player.SetActive(false);
+                    i++;
+                }
             }
         }
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            foreach (GameInstanceManager gameinstanceManager in gameInstanceManagerList)
+            {
+                if (gameinstanceManager.boss)
+                {
+                    BossStatistic bossStat = gameinstanceManager.boss.GetComponent<BossStatistic>();
+                    bossStat.fitnessValue = Fitness(bossStat.data[0]);
+                }
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.V))
         {
             foreach (GameInstanceManager gameinstanceManager in gameInstanceManagerList)
             {
-                gameinstanceManager.SaveBoss();
+                gameinstanceManager.SaveBoss(generation_Number);
             }
         }
         if (Input.GetKeyDown(KeyCode.G))
@@ -100,6 +178,7 @@ public class GA : MonoBehaviour {
             StartThisGeneration();
         }
         public_endCount = endCount;
+
     }
 
     public void StartThisGeneration()
@@ -107,8 +186,11 @@ public class GA : MonoBehaviour {
         Debug.Log("Start of generation" + generation_Number);
         foreach (GameInstanceManager gameinstanceManager in gameInstanceManagerList)
         {
-            gameinstanceManager.Resetkub();
-            gameinstanceManager.StartFight();
+            if (gameinstanceManager.boss)
+            {
+                gameinstanceManager.Resetkub();
+                gameinstanceManager.StartFight();
+            }
         }
     }
 
@@ -118,9 +200,8 @@ public class GA : MonoBehaviour {
         if(endCount == gameInstanceManagerList.Count)
         {
             Debug.Log("All Instance END!");
-            if (next || auto)
+            if (auto)
             {
-                next = false;
                 SelectionPhase();
             }
             //SelectionPhase();
@@ -232,9 +313,8 @@ public class GA : MonoBehaviour {
             gameInstanceManagerList[i].AssignBossToThisInstance(nextGeneration[i]);
         }
         // START NEXT GENEARTION HERE (?)
-        if (next || auto)
+        if (auto)
         {
-            next = false;
             generation_Number += 1;
             mark_number = 0;
             StartThisGeneration();
@@ -308,14 +388,19 @@ public class GA : MonoBehaviour {
             if(Random.value < mutation_rate)
             {
                 GameObject newAction = Generator.GenerateRandomAction();
+                GameObject temp_mutatedAction = offspring1ActionList[i].gameObject;
                 offspring1ActionList[i] = newAction.GetComponent<IAction>();
                 newAction.name += " M" + generation_Number;
+                Destroy(temp_mutatedAction);
             }
             if (Random.value < mutation_rate)
             {
                 GameObject newAction = Generator.GenerateRandomAction();
+                GameObject temp_mutatedAction = offspring2ActionList[i].gameObject;
                 offspring2ActionList[i] = newAction.GetComponent<IAction>();
                 newAction.name += " M" +generation_Number;
+                Destroy(temp_mutatedAction);
+            
             }
         }
 

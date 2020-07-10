@@ -8,6 +8,8 @@ public class PlayerAttack : MonoBehaviour {
     private Sword swordScript;
     private PlayerMovement playerMovement;
 
+    public GameInstanceManager gameInstanceManager;
+
     public Image cooldownImage; 
     public Text cooldownText; 
 
@@ -50,8 +52,17 @@ public class PlayerAttack : MonoBehaviour {
         else if ((Input.GetButton("Fire2") || Input.GetKeyDown(KeyCode.Semicolon)) && myTime > nextFire)
         {
             nextFire = myTime + attackDelay;
-            Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation);
-            Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation);
+            if (gameInstanceManager)
+            {
+
+                Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation, gameInstanceManager.transform);
+                Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation, gameInstanceManager.transform);
+            }
+            else
+            { 
+                Instantiate(shot, shotSpawn[0].position, shotSpawn[0].rotation);
+                Instantiate(shot, shotSpawn[1].position, shotSpawn[1].rotation);
+             }
             nextFire = nextFire - myTime;
             myTime = 0.0f;
             attacking = true;
@@ -59,9 +70,7 @@ public class PlayerAttack : MonoBehaviour {
                 cooldownImage.fillAmount = 0;
             playerMovement.enabled = false;
         }
-
-
-
+        
 
         if (myTime > attackingTime)
         {

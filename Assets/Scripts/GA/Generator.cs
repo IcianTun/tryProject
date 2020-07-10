@@ -6,7 +6,7 @@ using UnityEngine;
 public class Generator : MonoBehaviour {
 
     public const int ATTACK_SIZE = 5;
-    public const int SIZE_OF_ACTION_IN_ATTACK = 7;
+    public const int SIZE_OF_ACTION_IN_ATTACK = 4;
 
     public GameObject bossTemplate;
     public List<GameObject> actionTemplates;
@@ -44,7 +44,7 @@ public class Generator : MonoBehaviour {
     {
         GameObject empty = new GameObject();
         Attack attackScript = empty.AddComponent<Attack>();
-        attackScript.delayAfterAttack = 1.5f;
+        //attackScript.delayAfterAttack = 1.5f;
 
         for(int i = 0; i < SIZE_OF_ACTION_IN_ATTACK; i++)
         {

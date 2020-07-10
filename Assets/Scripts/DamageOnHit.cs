@@ -25,7 +25,7 @@ public class DamageOnHit : MonoBehaviour {
         }
         else if (other.tag == "Boundary" && isRemovedAfterHit)
         {
-            Destroy(gameObject);
+            StartCoroutine(DestroyAfter());
         }
 
         // Enemy Attacks
@@ -38,6 +38,12 @@ public class DamageOnHit : MonoBehaviour {
             }
         }
 
+    }
+
+    IEnumerator DestroyAfter()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 
 }

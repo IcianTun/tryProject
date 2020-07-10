@@ -15,6 +15,11 @@ public class BossStatistic : MonoBehaviour {
 
     public List<BossStatisticData> data;
 
+    public float fitnessValue;
+
+    
+
+    #region tst
     //public BossStatisticData GetAverageData()
     //{
     //    float _timeUsed = 0 ;
@@ -35,5 +40,5 @@ public class BossStatistic : MonoBehaviour {
 
     //    };
     //}
-
+    #endregion
 }

@@ -36,7 +36,9 @@ public class tst : MonoBehaviour {
     void Update () {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Debug.Log(GA.Fitness(bossStatsData));
+            //Debug.Log(GA.Fitness(bossStatsData));
+            tstList.AddRange(selected);
+
             //float avg = tstList.Average();
             //float thisGen_SD = Mathf.Sqrt(tstList.Average(v => (v - avg) * (v - avg)));
             //Debug.Log(thisGen_SD);

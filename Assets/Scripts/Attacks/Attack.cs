@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour {
 
     public string myString;
     
-    public float delayAfterAttack = 1.5f;
+    //public float delayAfterAttack = 1.5f;
     
     ///for testing
     //private void Update()

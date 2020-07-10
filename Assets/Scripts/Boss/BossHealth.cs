@@ -21,7 +21,7 @@ public class BossHealth : MonoBehaviour
         currentHealth = maxHealth;
 
         if (hpText)
-        hpText.text = currentHealth + "/" + maxHealth;
+        hpText.text = "Boss HP: " + currentHealth;
     }
     
     public void takeDamage(int damagePoint)
@@ -30,7 +30,7 @@ public class BossHealth : MonoBehaviour
         if (healthbar)
             healthbar.fillAmount = (float)currentHealth / maxHealth;
         if (hpText)
-            hpText.text = currentHealth + "/" + maxHealth;
+            hpText.text = "Boss HP: " + currentHealth;
 
         if (currentHealth <= 0)
         {
@@ -51,6 +51,8 @@ public class BossHealth : MonoBehaviour
         currentHealth = maxHealth;
         if (healthbar)
             healthbar.fillAmount = (float)currentHealth / maxHealth;
+        if (hpText)
+            hpText.text = "Boss HP: " + currentHealth;
         bossAttackController.MyReset();
         bossMovementController.Stop();
     }
